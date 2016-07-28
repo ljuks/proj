@@ -1,0 +1,179 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition template="/#{pro.dpass}/template.xhtml">
+
+
+
+
+        <ui:define name="body">
+
+            <h:form id="ProjectsListForm">
+               <p:panel > 
+                    <p:panelGrid >
+                        <p:row>
+                            <p:column style="width:70%">
+                                <p:dataTable id="datalist" value="#{projectsController.items}" var="item"
+                                             selectionMode="single" selection="#{projectsController.selected}"
+                                             paginator="true"
+                                             paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {Exporters}"
+                                             paginatorPosition="top"
+                                             rowKey="#{item.id}"
+                                             rows="10"
+                                             rowsPerPageTemplate="10,20,30,40,50"
+                                             widgetVar="pp"
+                                             scrollable="true"
+                                             scrollWidth="100%"
+                                             style="width:100%; margin-bottom:20px"
+                                             >
+                                    <p:ajax event="rowSelect"  listener="#{projectpersonsController.projselect}" update=":ProjectsListForm:datalist1 createButton viewButton editButton deleteButton"/>
+                                    <p:ajax event="rowUnselect" update="createButton viewButton editButton deleteButton"/>
+
+
+
+
+
+
+
+                                    <f:facet name="{Exporters}"  >
+                                        <p:inputText title="Поиск" id="globalFilter" onkeyup="PF('pp').filter()" style="width:150px; float: right" /> 
+                                        <!--                                        <h:outputText value="Глобальный поиск:" style="float: right" /> -->
+                                        <h:commandLink style="float: right">
+                                            <p:graphicImage name="images/excel.png" width="24"/> 
+                                            <p:dataExporter type="xls" target="datalist" fileName="projects"/>
+                                        </h:commandLink>
+                                        <!--                                       <p:outputPanel style="text-align:right"> -->
+
+
+                                        <!--                                        </p:outputPanel> -->
+
+                                    </f:facet>
+
+                                    <p:column sortBy="#{item.id}" filterBy="#{item.id}" style="width:5%">
+                                        <f:facet name="header">
+                                            <h:outputText value="№"/>
+                                        </f:facet>
+                                        <h:outputText value="#{item.id}"/>
+                                    </p:column>
+
+
+
+                                    <p:column sortBy="#{item.statusid.name}" filterBy="#{item.statusid.name}" headerText="Статус" style="width:10%">
+                                        <f:facet name="filter">
+                                            <p:selectOneMenu onchange="PF('pp').filter()" >
+                                                <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                                                <f:selectItems value="#{projectstatusController.itemsAvailableSelectOne}"/>
+                                            </p:selectOneMenu> 
+                                        </f:facet>
+                                        <h:outputText value="#{item.statusid.name}"/>
+                                    </p:column>
+
+                                    <p:column sortBy="#{item.name}" filterBy="#{item.name}" style="width:45%">
+                                        <f:facet name="header">
+                                            <h:outputText value="#{bundle.ListProjectsTitle_name}"/>
+                                        </f:facet>
+                                        <h:outputText value="#{item.name}"/>
+                                    </p:column>
+
+                                    <p:column filterBy="#{item.clientid.name}" sortBy="#{item.clientid.name}" style="width:20%">
+                                        <f:facet name="header">
+                                            <h:outputText value="#{bundle.ListProjectsTitle_clientid}"/>
+                                        </f:facet>
+                                        <h:outputText value="#{item.clientid.name}"/>
+                                    </p:column>
+
+                                    <p:column sortBy="#{item.typeid.name}" filterBy="#{item.typeid.name}" headerText="Категор" style="width:10%">
+                                        <f:facet name="filter">
+                                            <p:selectOneMenu onchange="PF('pp').filter()"  >
+                                                <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                                                <f:selectItems value="#{projecttypesController.itemsAvailableSelectOne}"/>
+                                            </p:selectOneMenu> 
+                                        </f:facet>
+                                        <h:outputText value="#{item.typeid.name}"/>
+                                    </p:column>
+
+                                    <p:column sortBy="#{item.pdate}" filterBy="#{item.pdate}" headerText="Дата" style="width:10%">
+                                        <f:facet name="filter">
+                                            <p:calendar  title="Дата" navigator="true" pattern="dd/MM/yy" size="10" showButtonPanel="true" locale="ru" >
+                                                <p:ajax event="dateSelect"  oncomplete="PF('pp').filter()"/>
+
+                                            </p:calendar>
+                                        </f:facet>
+                                        <h:outputText value="#{item.pdate}">
+                                            <f:convertDateTime pattern="dd/MM/yy" />
+                                        </h:outputText>
+                                    </p:column>
+
+
+
+                                    <f:facet name="footer">
+                                        <p:commandButton id="createButton" icon="ui-icon-plus"   value="#{bundle.Create}" actionListener="#{projectsController.prepareCreate}" update=":ProjectsCreateForm" oncomplete="PF('ProjectsCreateDialog').show()"/>
+                                        <p:commandButton id="viewButton"   icon="ui-icon-search" value="#{bundle.View}" update=":ProjectsViewForm" oncomplete="PF('ProjectsViewDialog').show()" disabled="#{empty projectsController.selected}"/>
+                                        <p:commandButton id="editButton"   icon="ui-icon-pencil" value="#{bundle.Edit}" update=":ProjectsEditForm" oncomplete="PF('ProjectsEditDialog').show()" disabled="#{empty projectsController.selected}"/>
+                                        <p:commandButton id="deleteButton" icon="ui-icon-trash"  value="#{bundle.Delete}" actionListener="#{projectsController.destroy}" update=":growl,datalist" disabled="#{empty projectsController.selected}"/>
+                                    </f:facet>
+                                </p:dataTable>
+                            </p:column>
+
+
+                            <p:column >
+                                <p:dataTable id="datalist1" value="#{projectpersonsController.items}" var="item1"
+                                             selectionMode="single" selection="#{projectpersonsController.selected}"
+                                             paginator="false" 
+                                             rowKey="#{item1.id}"
+                                             rows="7"
+                                             widgetVar="pp1"
+                                             style="width: 100%; float: right; float:top"
+                                             >
+                                    <p:ajax event="rowSelect"   update="createButton1 editButton1 deleteButton1"/>
+                                    <p:ajax event="rowUnselect" update="createButton1 editButton1 deleteButton1"/>
+
+                                    <p:column sortBy="#{item1.userid.fio}" filterBy="#{item1.userid.fio}" style="width:40%">
+                                        <f:facet name="header">
+                                            <h:outputText value="fio"/>
+                                        </f:facet>
+                                        <h:outputText value="#{item1.userid.fio}"/>
+                                    </p:column>
+                                    <p:column sortBy="#{item1.usersptypeid.name}" filterBy="#{item1.usersptypeid.name }" style="width:20%">
+                                        <f:facet name="header">
+                                            <h:outputText value="Роль"/>
+                                        </f:facet>
+                                        <h:outputText value="#{item1.usersptypeid.name }"/>
+                                    </p:column>        
+                                    <p:column sortBy="#{item1.kpi}" filterBy="#{item1.kpi}" style="width:20%">
+                                        <f:facet name="header">
+                                            <h:outputText value="KPI"/>
+                                        </f:facet>
+                                        <h:outputText value="#{item1.kpi}"/>
+                                    </p:column>
+
+
+                                    <f:facet name="footer">
+                                        <p:commandButton id="createButton1" icon="ui-icon-plus"    actionListener="#{projectpersonsController.prepareCreate}" update=":ProjectpersonsCreateForm" oncomplete="PF('ProjectpersonsCreateDialog').show()"/>
+                                        <p:commandButton id="editButton1"   icon="ui-icon-pencil"  update=":ProjectpersonsEditForm" oncomplete="PF('ProjectpersonsEditDialog').show()" disabled="#{empty projectpersonsController.selected}"/>
+                                        <p:commandButton id="deleteButton1" icon="ui-icon-trash"   actionListener="#{projectpersonsController.destroy}" update=":growl,datalist1" disabled="#{empty projectpersonsController.selected}"/>
+                                    </f:facet>                           
+
+
+                                </p:dataTable>
+                            </p:column>
+                        </p:row>
+                    </p:panelGrid>
+                </p:panel>
+            </h:form>
+
+            <ui:include src="Create.xhtml"/>
+            <ui:include src="Edit.xhtml"/>
+            <ui:include src="View.xhtml"/>
+            <ui:include src="/#{pro.dpass}/projectpersons/Create_1.xhtml"/>
+            <ui:include src="/#{pro.dpass}/projectpersons/Edit_1.xhtml"/>
+
+        </ui:define>
+    </ui:composition>
+
+</html>

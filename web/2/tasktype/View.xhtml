@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="TasktypeViewDlg" widgetVar="TasktypeViewDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.ViewTasktypeTitle}">
+            <h:form id="TasktypeViewForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{tasktypeController.selected != null}">
+                        <h:outputText value="#{bundle.ViewTasktypeLabel_id}"/>
+                        <h:outputText value="#{tasktypeController.selected.id}" title="#{bundle.ViewTasktypeTitle_id}"/>
+                        <h:outputText value="#{bundle.ViewTasktypeLabel_name}"/>
+                        <h:outputText value="#{tasktypeController.selected.name}" title="#{bundle.ViewTasktypeTitle_name}"/>
+                        <h:outputText value="#{bundle.ViewTasktypeLabel_pid}"/>
+                        <h:outputText value="#{tasktypeController.selected.pid}" title="#{bundle.ViewTasktypeTitle_pid}"/>
+                        <h:outputText value="#{bundle.ViewTasktypeLabel_ts}"/>
+                        <h:outputText value="#{tasktypeController.selected.ts}" title="#{bundle.ViewTasktypeTitle_ts}">
+                            <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                        </h:outputText>
+                    </p:panelGrid>
+                    <p:commandButton value="#{bundle.Close}" onclick="TasktypeViewDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

@@ -1,0 +1,65 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <h:head>
+        <!--       <title><ui:insert name="title">Default Title</ui:insert></title>-->
+        <h:outputStylesheet library="css" name="jsfcrud.css"/>
+        <h:outputScript library="js" name="jsfcrud.js"/>
+    </h:head>
+
+    <h:body>
+
+        <p:growl id="growl" life="5000" />
+
+      <p:layout fullPage="true">
+            <p:layoutUnit position="north" size="40" >
+                <h:form id="menuForm">
+                    <p:menubar >
+                        <p:menuitem value="#{bundle.ProjectsHeading}" outcome="/#{pro.dpass}/projects/List.xhtml"/>
+                        <p:menuitem value="#{bundle.SheduleHeading}" outcome="/#{pro.dpass}/shedule/List.xhtml" />
+                        <p:submenu label="Справочники">
+                            <p:menuitem value="#{bundle.CatsHeading}" outcome="/#{pro.dpass}/cats/List.xhtml" />
+                            <p:menuitem value="#{bundle.ClientHeading}" outcome="/#{pro.dpass}/client/List.xhtml" />
+                            <p:menuitem value="Категории клиентов" outcome="/#{pro.dpass}/clienttype/List.xhtml" />
+                            <p:menuitem value="#{bundle.CompanyHeading}" outcome="/#{pro.dpass}/company/List.xhtml" />
+                            <p:menuitem value="Контактные лица" outcome="/#{pro.dpass}/contactperson/List.xhtml" />
+                            <p:menuitem value="#{bundle.ManagersHeading}" outcome="/#{pro.dpass}/managers/List.xhtml" />
+                            <p:menuitem value="#{bundle.PaymentHeading}" outcome="/#{pro.dpass}/payment/List.xhtml" />
+                            <p:menuitem value="#{bundle.ProjectstatusHeading}" outcome="/#{pro.dpass}/projectstatus/List.xhtml" />
+                            <p:menuitem value="#{bundle.ProjecttypesHeading}" outcome="/#{pro.dpass}/projecttypes/List.xhtml" />
+                            <p:menuitem value="Статусы задач" outcome="/#{pro.dpass}/taskstatus/List.xhtml" />
+                            <p:menuitem value="#{bundle.TasktypeHeading}" outcome="/#{pro.dpass}/tasktype/List.xhtml" />
+                            <p:menuitem value="Типы задач" outcome="/#{pro.dpass}/tasktype1/List.xhtml" />
+                            <p:menuitem value="#{bundle.UsersHeading}" outcome="/#{pro.dpass}/users/List.xhtml" />
+                            <p:menuitem value="#{bundle.UserstypeHeading}" outcome="/#{pro.dpass}/userstype/List.xhtml" />
+                            <p:menuitem value="Роли" outcome="/#{pro.dpass}/usersptype/List.xhtml" />
+                            <p:menuitem value="Холдинги" outcome="/#{pro.dpass}/holdings/List.xhtml" />
+                        </p:submenu>
+                        <p:submenu label="Сервис">
+                            <p:menuitem value="Сменить пароль" outcome="/changepass.xhtml" />
+                        </p:submenu>
+                        <f:facet name="options">
+                            <p:outputLabel style="margin-right:10px" value="#{pro.currentuserFio} (#{pro.currentuserRole})"/>
+                        </f:facet>
+                    </p:menubar>
+                </h:form>
+           </p:layoutUnit>
+
+ <!--           <p:layoutUnit position="south" size="60">
+                <ui:insert name="footer"/>
+            </p:layoutUnit>-->
+
+            <p:layoutUnit position="center">
+                <ui:insert name="body"/>
+            </p:layoutUnit> 
+
+        </p:layout>
+
+    </h:body>
+
+</html>

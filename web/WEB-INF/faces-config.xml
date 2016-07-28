@@ -1,0 +1,40 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<faces-config version="2.2"
+              xmlns="http://xmlns.jcp.org/xml/ns/javaee"
+              xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+              xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-facesconfig_2_2.xsd">
+    <application>
+        <resource-bundle>
+            <base-name>/Bundle</base-name>
+            <var>bundle</var>
+        </resource-bundle>
+        <resource-bundle>
+            <base-name>/Bundle</base-name>
+            <var>bundle</var>
+        </resource-bundle>
+        <resource-bundle>
+            <base-name>/Bundle1</base-name>
+            <var>bundle1</var>
+        </resource-bundle>
+        <resource-bundle>
+            <base-name>/Bundle3</base-name>
+            <var>bundle3</var>
+        </resource-bundle>
+        <resource-bundle>
+            <base-name>/Bundle55</base-name>
+            <var>bundle55</var>
+        </resource-bundle>
+        <resource-bundle>
+            <base-name>/Bundle77</base-name>
+            <var>bundle77</var>
+        </resource-bundle>
+        <resource-bundle>
+            <base-name>/Bundle777</base-name>
+            <var>bundle777</var>
+        </resource-bundle>
+        <resource-bundle>
+            <base-name>/Bundle11</base-name>
+            <var>bundle11</var>
+        </resource-bundle>
+    </application>
+</faces-config>

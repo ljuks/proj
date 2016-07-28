@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="ClientViewDlg" widgetVar="ClientViewDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.ViewClientTitle}">
+            <h:form id="ClientViewForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{clientController.selected != null}">
+                        <h:outputText value="#{bundle.ViewClientLabel_id}"/>
+                        <h:outputText value="#{clientController.selected.id}" title="#{bundle.ViewClientTitle_id}"/>
+                        <h:outputText value="#{bundle.ViewClientLabel_name}"/>
+                        <h:outputText value="#{clientController.selected.name}" title="#{bundle.ViewClientTitle_name}"/>
+                        <h:outputText value="#{bundle.ViewClientLabel_okpo}"/>
+                        <h:outputText value="#{clientController.selected.okpo}" title="#{bundle.ViewClientTitle_okpo}"/>
+                        <h:outputText value="#{bundle.ViewClientLabel_addressl}"/>
+                        <h:outputText value="#{clientController.selected.addressl}" title="#{bundle.ViewClientTitle_addressl}"/>
+                        <h:outputText value="#{bundle.ViewClientLabel_addressp}"/>
+                        <h:outputText value="#{clientController.selected.addressp}" title="#{bundle.ViewClientTitle_addressp}"/>
+                        <h:outputText value="#{bundle.ViewClientLabel_phone}"/>
+                        <h:outputText value="#{clientController.selected.phone}" title="#{bundle.ViewClientTitle_phone}"/>
+                        <h:outputText value="#{bundle.ViewClientLabel_addresse}"/>
+                        <h:outputText value="#{clientController.selected.addresse}" title="#{bundle.ViewClientTitle_addresse}"/>
+                        <h:outputText value="#{bundle.ViewClientLabel_pid}"/>
+                        <h:outputText value="#{clientController.selected.pid}" title="#{bundle.ViewClientTitle_pid}"/>
+                        <h:outputText value="#{bundle.ViewClientLabel_ts}"/>
+                        <h:outputText value="#{clientController.selected.ts}" title="#{bundle.ViewClientTitle_ts}">
+                            <f:convertDateTime pattern="dd/MM/yy HH:mm" />
+                        </h:outputText>
+                    </p:panelGrid>
+                    <p:commandButton value="#{bundle.Close}" onclick="ClientViewDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

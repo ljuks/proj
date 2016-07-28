@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="UsersptypeCreateDlg" widgetVar="UsersptypeCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle777.CreateUsersptypeTitle}">
+            <h:form id="UsersptypeCreateForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{usersptypeController.selected != null}">
+                        <p:outputLabel value="#{bundle777.CreateUsersptypeLabel_name}" for="name" />
+                        <p:inputText id="name" value="#{usersptypeController.selected.name}" title="#{bundle777.CreateUsersptypeTitle_name}" />
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{usersptypeController.create}" value="#{bundle777.Save}" update="display,:UsersptypeListForm:datalist,:growl" oncomplete="handleSubmit(args,'UsersptypeCreateDialog');"/>
+                    <p:commandButton value="#{bundle777.Cancel}" onclick="UsersptypeCreateDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

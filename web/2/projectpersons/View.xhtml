@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="ProjectpersonsViewDlg" widgetVar="ProjectpersonsViewDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle777.ViewProjectpersonsTitle}">
+            <h:form id="ProjectpersonsViewForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{projectpersonsController.selected != null}">
+                        <h:outputText value="#{bundle777.ViewProjectpersonsLabel_id}"/>
+                        <h:outputText value="#{projectpersonsController.selected.id}" title="#{bundle777.ViewProjectpersonsTitle_id}"/>
+                        <h:outputText value="#{bundle777.ViewProjectpersonsLabel_userid}"/>
+                        <h:outputText value="#{projectpersonsController.selected.userid}" title="#{bundle777.ViewProjectpersonsTitle_userid}"/>
+                        <h:outputText value="#{bundle777.ViewProjectpersonsLabel_usersptypeid}"/>
+                        <h:outputText value="#{projectpersonsController.selected.usersptypeid}" title="#{bundle777.ViewProjectpersonsTitle_usersptypeid}"/>
+                        <h:outputText value="#{bundle777.ViewProjectpersonsLabel_udate}"/>
+                        <h:outputText value="#{projectpersonsController.selected.udate}" title="#{bundle777.ViewProjectpersonsTitle_udate}">
+                            <f:convertDateTime pattern="MM/dd/yyyy" />
+                        </h:outputText>
+                        <h:outputText value="#{bundle777.ViewProjectpersonsLabel_udateend}"/>
+                        <h:outputText value="#{projectpersonsController.selected.udateend}" title="#{bundle777.ViewProjectpersonsTitle_udateend}">
+                            <f:convertDateTime pattern="MM/dd/yyyy" />
+                        </h:outputText>
+                    </p:panelGrid>
+                    <p:commandButton value="#{bundle777.Close}" onclick="ProjectpersonsViewDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

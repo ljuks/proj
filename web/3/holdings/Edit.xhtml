@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="HoldingsEditDlg" widgetVar="HoldingsEditDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle3.EditHoldingsTitle}">
+            <h:form id="HoldingsEditForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{holdingsController.selected != null}">
+                        <p:outputLabel value="#{bundle3.EditHoldingsLabel_name}" for="name" />
+                        <p:inputText id="name" value="#{holdingsController.selected.name}" title="#{bundle3.EditHoldingsTitle_name}" required="true" requiredMessage="#{bundle3.EditHoldingsRequiredMessage_name}"/>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{holdingsController.update}" value="#{bundle3.Save}" update="display,:HoldingsListForm:datalist,:growl" oncomplete="handleSubmit(args, 'HoldingsEditDialog');"/>
+                    <p:commandButton value="#{bundle3.Cancel}" onclick="HoldingsEditDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

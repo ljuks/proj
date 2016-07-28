@@ -1,0 +1,185 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="ProjectsCreateDlg" widgetVar="ProjectsCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.CreateProjectsTitle}">
+            <h:form id="ProjectsCreateForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid  rendered="#{projectsController.selected != null}">
+                        <p:row>
+                            <p:column>
+                                <p:outputLabel value="#{bundle.CreateProjectsLabel_contract}" for="contract" />
+                            </p:column>
+                            <p:column colspan="2">
+                                <p:inputText id="contract" value="#{projectsController.selected.contract}" 
+                                             title="#{bundle.CreateProjectsTitle_contract}" />   
+                            </p:column>
+                        </p:row>                       
+
+
+
+
+                        <p:row>
+                            <p:column>
+                                <p:outputLabel value="#{bundle.CreateProjectsLabel_pdate}" for="pdate" />
+                            </p:column>
+                            <p:column colspan="2">
+                                <p:calendar id="pdate" pattern="dd/MM/yy" value="#{projectsController.selected.pdate}" 
+                                            locale="ru" showOn="button" title="#{bundle.EditProjectsTitle_pdate}"  />    
+                            </p:column>
+                        </p:row>
+
+
+                        <p:row>
+                            <p:column>
+                                <p:outputLabel value="Компания исполнитель" for="companyid" />
+                            </p:column>
+                            <p:column colspan="2">
+                                <p:selectOneMenu id="companyid" value="#{projectsController.selected.companyid}" >
+                                    <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                                    <f:selectItems value="#{companyController.itemsAvailableSelectOne}"
+                                                   var="companyidItem"
+                                                   itemValue="#{companyidItem}"
+                                                   itemLabel="#{companyidItem.name}"/>
+                                </p:selectOneMenu>
+
+                            </p:column>
+                        </p:row>
+
+
+                        <p:row>
+                            <p:column>
+                                <p:outputLabel value="Номер заявки" for="nz" />
+                            </p:column>
+                            <p:column colspan="2">
+                                <p:inputText id="nz" value="#{projectsController.selected.nz}" 
+                                             title="Номер заявки" />
+                            </p:column>
+                        </p:row>
+
+
+
+                        <p:row>
+                            <p:column>
+                                <p:outputLabel value="#{bundle.CreateProjectsLabel_clientid}" for="clientid" />
+                            </p:column>
+                            <p:column >
+                                <p:selectOneMenu id="clientid" value="#{projectsController.selected.clientid}" >
+                                    <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                                    <f:selectItems value="#{clientController.itemsAvailableSelectOne}"
+                                                   var="clientidItem"
+                                                   itemValue="#{clientidItem}"
+                                                   itemLabel="#{clientidItem.name}"/>
+                                </p:selectOneMenu>
+
+                            </p:column>
+                            <p:column>
+                                <p:commandButton id="createuButton" icon="ui-icon-plus"   value="Добавить предприятие" 
+                                                 actionListener ="#{clientController.prepareCreate()}"
+                                                 update="clientid,  :ClientCreateForm" 
+                                                 oncomplete ="PF('ClientCreateDialog').show()"/>
+                            </p:column>
+                        </p:row>
+                        <p:row>
+                            <p:column>
+                                <p:outputLabel value="#{bundle.CreateProjectsLabel_typeid}" for="typeid" />          
+                            </p:column>
+                            <p:column colspan="2">
+                                <p:selectOneMenu id="typeid" value="#{projectsController.selected.typeid}" >
+                                    <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                                    <f:selectItems value="#{projecttypesController.itemsAvailableSelectOne}"
+                                                   var="typeidItem"
+                                                   itemValue="#{typeidItem}"
+                                                   itemLabel="#{typeidItem.name}"/>
+                                </p:selectOneMenu>
+                            </p:column>
+                        </p:row>
+                        <p:row>
+                            <p:column>
+                                <p:outputLabel value="#{bundle.CreateProjectsLabel_catid}" for="catid" />                        
+                            </p:column>
+                            <p:column colspan="2">
+                                <p:selectOneMenu id="catid" value="#{projectsController.selected.catid}" >
+                                    <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                                    <f:selectItems value="#{catsController.itemsAvailableSelectOne}"
+                                                   var="catidItem"
+                                                   itemValue="#{catidItem}"
+                                                   itemLabel="#{catidItem.name}"/>
+                                </p:selectOneMenu>
+                            </p:column>
+                        </p:row>
+                        <p:row>
+                            <p:column>
+                                <p:outputLabel value="#{bundle.CreateProjectsLabel_statusid}" for="statusid" />
+                            </p:column>
+                            <p:column colspan="2">
+                                <p:selectOneMenu id="statusid" value="#{projectsController.selected.statusid}" >
+                                    <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                                    <f:selectItems value="#{projectstatusController.itemsAvailableSelectOne}"
+                                                   var="statusidItem"
+                                                   itemValue="#{statusidItem}"
+                                                   itemLabel="#{statusidItem.name}"/>
+                                </p:selectOneMenu>  
+                            </p:column>
+                        </p:row>
+                        <p:row>
+                            <p:column>
+                                <p:outputLabel value="#{bundle.CreateProjectsLabel_managerid}" for="managerid" />            
+                            </p:column>
+                            <p:column>
+                                <p:selectOneMenu id="managerid" value="#{projectsController.selected.managerid}" >
+                                    <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                                    <f:selectItems value="#{usersController.itemsAvailableSelectOne}"
+                                                   var="manageridItem"
+                                                   itemValue="#{manageridItem}"
+                                                   itemLabel="#{manageridItem.fio}"/>
+                                </p:selectOneMenu>
+                            </p:column>
+                            <p:column>
+                                <p:commandButton id="createcButton" icon="ui-icon-plus"   value="Добавить сотрудника" 
+                                                 actionListener ="#{usersController.prepareCreate()}"
+                                                 update="managerid,  :UsersCreateForm" 
+                                                 oncomplete ="PF('UsersCreateDialog').show()"/>
+                            </p:column>
+                        </p:row>
+
+
+                        <p:row>
+                            <p:column>
+                                <p:outputLabel value="#{bundle.CreateProjectsLabel_pdesc}" for="pdesc" />                                
+                            </p:column>
+                            <p:column colspan="2">
+                                <p:inputTextarea rows="4" cols="60" id="pdesc" value="#{projectsController.selected.pdesc}" title="#{bundle.CreateProjectsTitle_pdesc}" />                               
+                            </p:column>                            
+                        </p:row>
+
+                        <p:row>
+                            <p:column>
+                                <p:outputLabel value="Стоимость" for="cost" />                                
+                            </p:column>
+                            <p:column colspan="2">
+                                <p:inputText id="cost" value="#{projectsController.selected.cost}"  > 
+                                             <f:converter converterId="javax.faces.BigDecimal" />
+                                </p:inputText>>                               
+                            </p:column>                            
+                        </p:row>
+
+
+
+
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{projectsController.create}" value="#{bundle.Save}" update="display,:ProjectsListForm:datalist,:growl" oncomplete="handleSubmit(args,'ProjectsCreateDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="ProjectsCreateDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+        <ui:include src="/#{pro.dpass}/users/Create_1.xhtml"/>
+        <ui:include src="/#{pro.dpass}/client/Create_1.xhtml"/>
+    </ui:composition>
+</html>

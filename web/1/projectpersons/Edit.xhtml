@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="ProjectpersonsEditDlg" widgetVar="ProjectpersonsEditDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle777.EditProjectpersonsTitle}">
+            <h:form id="ProjectpersonsEditForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{projectpersonsController.selected != null}">
+                        <p:outputLabel value="#{bundle777.EditProjectpersonsLabel_id}" for="id" />
+                        <p:inputText id="id" value="#{projectpersonsController.selected.id}" title="#{bundle777.EditProjectpersonsTitle_id}" required="true" requiredMessage="#{bundle777.EditProjectpersonsRequiredMessage_id}"/>
+                        <p:outputLabel value="#{bundle777.EditProjectpersonsLabel_userid}" for="userid" />
+                        <p:inputText id="userid" value="#{projectpersonsController.selected.userid}" title="#{bundle777.EditProjectpersonsTitle_userid}" required="true" requiredMessage="#{bundle777.EditProjectpersonsRequiredMessage_userid}"/>
+                        <p:outputLabel value="#{bundle777.EditProjectpersonsLabel_usersptypeid}" for="usersptypeid" />
+                        <p:inputText id="usersptypeid" value="#{projectpersonsController.selected.usersptypeid}" title="#{bundle777.EditProjectpersonsTitle_usersptypeid}" />
+                        <p:outputLabel value="#{bundle777.EditProjectpersonsLabel_udate}" for="udate" />
+                        <p:calendar id="udate" pattern="MM/dd/yyyy" value="#{projectpersonsController.selected.udate}" title="#{bundle777.EditProjectpersonsTitle_udate}"  showOn="button"/>
+                        <p:outputLabel value="#{bundle777.EditProjectpersonsLabel_udateend}" for="udateend" />
+                        <p:calendar id="udateend" pattern="MM/dd/yyyy" value="#{projectpersonsController.selected.udateend}" title="#{bundle777.EditProjectpersonsTitle_udateend}"  showOn="button"/>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{projectpersonsController.update}" value="#{bundle777.Save}" update="display,:ProjectpersonsListForm:datalist,:growl" oncomplete="handleSubmit(args, 'ProjectpersonsEditDialog');"/>
+                    <p:commandButton value="#{bundle777.Cancel}" onclick="ProjectpersonsEditDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

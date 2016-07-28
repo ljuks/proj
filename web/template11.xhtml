@@ -1,0 +1,53 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
+
+    <h:head>
+        <title><ui:insert name="title">Default Title</ui:insert></title>
+        <h:outputStylesheet library="css" name="jsfcrud.css"/>
+        <h:outputScript library="js" name="jsfcrud.js"/>
+    </h:head>
+
+    <h:body>
+
+        <p:growl id="growl" life="3000" />
+
+        <p:layout fullPage="true">
+            <p:layoutUnit position="north" size="65" header="#{bundle.AppName}">
+                <h:form id="menuForm">
+                    <p:menubar>
+                        <p:menuitem value="#{bundle.Home}" outcome="/index" icon="ui-icon-home"/>
+                        <p:submenu label="#{bundle.Maintenance}">
+                            <p:menuitem value="Cats" outcome="/cats/List.xhtml" />
+                            <p:menuitem value="Client" outcome="/client/List.xhtml" />
+                            <p:menuitem value="Company" outcome="/company/List.xhtml" />
+                            <p:menuitem value="Managers" outcome="/managers/List.xhtml" />
+                            <p:menuitem value="Payment" outcome="/payment/List.xhtml" />
+                            <p:menuitem value="Projects" outcome="/projects/List.xhtml" />
+                            <p:menuitem value="Projectstatus" outcome="/projectstatus/List.xhtml" />
+                            <p:menuitem value="Projecttypes" outcome="/projecttypes/List.xhtml" />
+                            <p:menuitem value="Shedule" outcome="/shedule/List.xhtml" />
+                            <p:menuitem value="Tasktype" outcome="/tasktype/List.xhtml" />
+                            <p:menuitem value="Users" outcome="/users/List.xhtml" />
+                            <p:menuitem value="Userstype" outcome="/userstype/List.xhtml" />
+                        </p:submenu>
+                    </p:menubar>
+                </h:form>
+            </p:layoutUnit>
+
+            <p:layoutUnit position="south" size="60">
+                <ui:insert name="footer"/>
+            </p:layoutUnit>
+
+            <p:layoutUnit position="center">
+                <ui:insert name="body"/>
+            </p:layoutUnit>
+
+        </p:layout>
+
+    </h:body>
+
+</html>

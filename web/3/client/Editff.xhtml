@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="ClientEditDlg" widgetVar="ClientEditDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle55.EditClientTitle}">
+            <h:form id="ClientEditForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{clientController.selected != null}">
+                        <p:outputLabel value="#{bundle55.EditClientLabel_id}" for="id" />
+                        <p:inputText id="id" value="#{clientController.selected.id}" title="#{bundle55.EditClientTitle_id}" required="true" requiredMessage="#{bundle55.EditClientRequiredMessage_id}"/>
+                        <p:outputLabel value="#{bundle55.EditClientLabel_name}" for="name" />
+                        <p:inputText id="name" value="#{clientController.selected.name}" title="#{bundle55.EditClientTitle_name}" required="true" requiredMessage="#{bundle55.EditClientRequiredMessage_name}"/>
+                        <p:outputLabel value="#{bundle55.EditClientLabel_okpo}" for="okpo" />
+                        <p:inputText id="okpo" value="#{clientController.selected.okpo}" title="#{bundle55.EditClientTitle_okpo}" required="true" requiredMessage="#{bundle55.EditClientRequiredMessage_okpo}"/>
+                        <p:outputLabel value="#{bundle55.EditClientLabel_addressl}" for="addressl" />
+                        <p:inputText id="addressl" value="#{clientController.selected.addressl}" title="#{bundle55.EditClientTitle_addressl}" />
+                        <p:outputLabel value="#{bundle55.EditClientLabel_addressp}" for="addressp" />
+                        <p:inputText id="addressp" value="#{clientController.selected.addressp}" title="#{bundle55.EditClientTitle_addressp}" />
+                        <p:outputLabel value="#{bundle55.EditClientLabel_phone}" for="phone" />
+                        <p:inputText id="phone" value="#{clientController.selected.phone}" title="#{bundle55.EditClientTitle_phone}" />
+                        <p:outputLabel value="#{bundle55.EditClientLabel_addresse}" for="addresse" />
+                        <p:inputText id="addresse" value="#{clientController.selected.addresse}" title="#{bundle55.EditClientTitle_addresse}" />
+                        <p:outputLabel value="#{bundle55.EditClientLabel_pid}" for="pid" />
+                        <p:inputText id="pid" value="#{clientController.selected.pid}" title="#{bundle55.EditClientTitle_pid}" />
+                        <p:outputLabel value="#{bundle55.EditClientLabel_ts}" for="ts" />
+                        <p:calendar id="ts" pattern="MM/dd/yyyy HH:mm:ss" value="#{clientController.selected.ts}" title="#{bundle55.EditClientTitle_ts}" required="true" requiredMessage="#{bundle55.EditClientRequiredMessage_ts}" showOn="button"/>
+                        <p:outputLabel value="#{bundle55.EditClientLabel_typeid}" for="typeid" />
+                        <p:inputText id="typeid" value="#{clientController.selected.typeid}" title="#{bundle55.EditClientTitle_typeid}" />
+                        <p:outputLabel value="#{bundle55.EditClientLabel_site}" for="site" />
+                        <p:inputText id="site" value="#{clientController.selected.site}" title="#{bundle55.EditClientTitle_site}" />
+                        <p:outputLabel value="#{bundle55.EditClientLabel_cpid1}" for="cpid1" />
+                        <p:inputText id="cpid1" value="#{clientController.selected.cpid1}" title="#{bundle55.EditClientTitle_cpid1}" />
+                        <p:outputLabel value="#{bundle55.EditClientLabel_cpid2}" for="cpid2" />
+                        <p:inputText id="cpid2" value="#{clientController.selected.cpid2}" title="#{bundle55.EditClientTitle_cpid2}" />
+                        <p:outputLabel value="#{bundle55.EditClientLabel_cpid3}" for="cpid3" />
+                        <p:inputText id="cpid3" value="#{clientController.selected.cpid3}" title="#{bundle55.EditClientTitle_cpid3}" />
+                        <p:outputLabel value="#{bundle55.EditClientLabel_cpid4}" for="cpid4" />
+                        <p:inputText id="cpid4" value="#{clientController.selected.cpid4}" title="#{bundle55.EditClientTitle_cpid4}" />
+                        <p:outputLabel value="#{bundle55.EditClientLabel_cpid5}" for="cpid5" />
+                        <p:inputText id="cpid5" value="#{clientController.selected.cpid5}" title="#{bundle55.EditClientTitle_cpid5}" />
+                        <p:outputLabel value="#{bundle55.EditClientLabel_descr}" for="descr" />
+                        <p:inputTextarea rows="4" cols="30" id="descr" value="#{clientController.selected.descr}" title="#{bundle55.EditClientTitle_descr}" />
+                        <p:outputLabel value="#{bundle55.EditClientLabel_waydesc}" for="waydesc" />
+                        <p:inputText id="waydesc" value="#{clientController.selected.waydesc}" title="#{bundle55.EditClientTitle_waydesc}" />
+                        <p:outputLabel value="#{bundle55.EditClientLabel_holdingid}" for="holdingid" />
+                        <p:inputText id="holdingid" value="#{clientController.selected.holdingid}" title="#{bundle55.EditClientTitle_holdingid}" />
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{clientController.update}" value="#{bundle55.Save}" update="display,:ClientListForm:datalist,:growl" oncomplete="handleSubmit(args, 'ClientEditDialog');"/>
+                    <p:commandButton value="#{bundle55.Cancel}" onclick="ClientEditDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

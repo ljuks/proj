@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="ProjectsEditDlg" widgetVar="ProjectsEditDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle77.EditProjectsTitle}">
+            <h:form id="ProjectsEditForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{projectsController.selected != null}">
+                        <p:outputLabel value="#{bundle77.EditProjectsLabel_id}" for="id" />
+                        <p:inputText id="id" value="#{projectsController.selected.id}" title="#{bundle77.EditProjectsTitle_id}" required="true" requiredMessage="#{bundle77.EditProjectsRequiredMessage_id}"/>
+                        <p:outputLabel value="#{bundle77.EditProjectsLabel_pdate}" for="pdate" />
+                        <p:calendar id="pdate" pattern="MM/dd/yyyy" value="#{projectsController.selected.pdate}" title="#{bundle77.EditProjectsTitle_pdate}"  showOn="button"/>
+                        <p:outputLabel value="#{bundle77.EditProjectsLabel_name}" for="name" />
+                        <p:inputText id="name" value="#{projectsController.selected.name}" title="#{bundle77.EditProjectsTitle_name}" />
+                        <p:outputLabel value="#{bundle77.EditProjectsLabel_contract}" for="contract" />
+                        <p:inputText id="contract" value="#{projectsController.selected.contract}" title="#{bundle77.EditProjectsTitle_contract}" />
+                        <p:outputLabel value="#{bundle77.EditProjectsLabel_pdesc}" for="pdesc" />
+                        <p:inputTextarea rows="4" cols="30" id="pdesc" value="#{projectsController.selected.pdesc}" title="#{bundle77.EditProjectsTitle_pdesc}" />
+                        <p:outputLabel value="#{bundle77.EditProjectsLabel_pid}" for="pid" />
+                        <p:inputText id="pid" value="#{projectsController.selected.pid}" title="#{bundle77.EditProjectsTitle_pid}" />
+                        <p:outputLabel value="#{bundle77.EditProjectsLabel_ts}" for="ts" />
+                        <p:calendar id="ts" pattern="MM/dd/yyyy HH:mm:ss" value="#{projectsController.selected.ts}" title="#{bundle77.EditProjectsTitle_ts}" required="true" requiredMessage="#{bundle77.EditProjectsRequiredMessage_ts}" showOn="button"/>
+                        <p:outputLabel value="#{bundle77.EditProjectsLabel_companyid}" for="companyid" />
+                        <p:inputText id="companyid" value="#{projectsController.selected.companyid}" title="#{bundle77.EditProjectsTitle_companyid}" />
+                        <p:outputLabel value="#{bundle77.EditProjectsLabel_cost}" for="cost" />
+                        <p:inputText id="cost" value="#{projectsController.selected.cost}" title="#{bundle77.EditProjectsTitle_cost}" />
+                        <p:outputLabel value="#{bundle77.EditProjectsLabel_prepaid}" for="prepaid" />
+                        <p:inputText id="prepaid" value="#{projectsController.selected.prepaid}" title="#{bundle77.EditProjectsTitle_prepaid}" />
+                        <p:outputLabel value="#{bundle77.EditProjectsLabel_nz}" for="nz" />
+                        <p:inputText id="nz" value="#{projectsController.selected.nz}" title="#{bundle77.EditProjectsTitle_nz}" />
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{projectsController.update}" value="#{bundle77.Save}" update="display,:ProjectsListForm:datalist,:growl" oncomplete="handleSubmit(args, 'ProjectsEditDialog');"/>
+                    <p:commandButton value="#{bundle77.Cancel}" onclick="ProjectsEditDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

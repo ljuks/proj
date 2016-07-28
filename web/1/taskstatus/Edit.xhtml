@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="TaskstatusEditDlg" widgetVar="TaskstatusEditDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle1.EditTaskstatusTitle}">
+            <h:form id="TaskstatusEditForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{taskstatusController.selected != null}">
+                        <p:outputLabel value="#{bundle1.EditTaskstatusLabel_name}" for="name" />
+                        <p:inputText id="name" value="#{taskstatusController.selected.name}" title="#{bundle1.EditTaskstatusTitle_name}" required="true" requiredMessage="#{bundle1.EditTaskstatusRequiredMessage_name}"/>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{taskstatusController.update}" value="#{bundle1.Save}" update="display,:TaskstatusListForm:datalist,:growl" oncomplete="handleSubmit(args, 'TaskstatusEditDialog');"/>
+                    <p:commandButton value="#{bundle1.Cancel}" onclick="TaskstatusEditDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

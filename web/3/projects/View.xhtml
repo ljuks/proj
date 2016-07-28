@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="ProjectsViewDlg" widgetVar="ProjectsViewDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.ViewProjectsTitle}">
+            <h:form id="ProjectsViewForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{projectsController.selected != null}">
+                        <h:outputText value="#{bundle.ViewProjectsLabel_id}"/>
+                        <h:outputText value="#{projectsController.selected.id}" title="#{bundle.ViewProjectsTitle_id}"/>
+                        <h:outputText value="#{bundle.ViewProjectsLabel_pdate}"/>
+                        <h:outputText value="#{projectsController.selected.pdate}" title="#{bundle.ViewProjectsTitle_pdate}">
+                            <f:convertDateTime pattern="dd/MM/yy" />
+                        </h:outputText>
+                        <h:outputText value="#{bundle.ViewProjectsLabel_name}"/>
+                        <h:outputText value="#{projectsController.selected.name}" title="#{bundle.ViewProjectsTitle_name}"/>
+                        <h:outputText value="#{bundle.ViewProjectsLabel_contract}"/>
+                        <h:outputText value="#{projectsController.selected.contract}" title="#{bundle.ViewProjectsTitle_contract}"/>
+                        <h:outputText value="#{bundle.ViewProjectsLabel_pdesc}"/>
+                        <h:outputText value="#{projectsController.selected.pdesc}" title="#{bundle.ViewProjectsTitle_pdesc}"/>
+                        <h:outputText value="#{bundle.ViewProjectsLabel_pid}"/>
+                        <h:outputText value="#{projectsController.selected.pid}" title="#{bundle.ViewProjectsTitle_pid}"/>
+                        <h:outputText value="#{bundle.ViewProjectsLabel_ts}"/>
+                        <h:outputText value="#{projectsController.selected.ts}" title="#{bundle.ViewProjectsTitle_ts}">
+                            <f:convertDateTime pattern="dd/MM/yy HH:mm" />
+                        </h:outputText>
+                        <h:outputText value="#{bundle.ViewProjectsLabel_clientid}"/>
+                        <h:outputText value="#{projectsController.selected.clientid}" title="#{bundle.ViewProjectsTitle_clientid}"/>
+                        <h:outputText value="#{bundle.ViewProjectsLabel_typeid}"/>
+                        <h:outputText value="#{projectsController.selected.typeid.name}" title="#{bundle.ViewProjectsTitle_typeid}"/>
+                        <h:outputText value="#{bundle.ViewProjectsLabel_statusid}"/>
+                        <h:outputText value="#{projectsController.selected.statusid.name}" title="#{bundle.ViewProjectsTitle_statusid}"/>
+                        <h:outputText value="#{bundle.ViewProjectsLabel_userid}"/>
+                        <h:outputText value="#{projectsController.selected.userid.fio}" title="#{bundle.ViewProjectsTitle_userid}"/>
+                        <h:outputText value="#{bundle.ViewProjectsLabel_managerid}"/>
+                        <h:outputText value="#{projectsController.selected.managerid.fio}" title="#{bundle.ViewProjectsTitle_managerid}"/>
+                        <h:outputText value="#{bundle.ViewProjectsLabel_catid}"/>
+                        <h:outputText value="#{projectsController.selected.catid.name}" title="#{bundle.ViewProjectsTitle_catid}"/>
+                    </p:panelGrid>
+                    <p:commandButton value="#{bundle.Close}" onclick="ProjectsViewDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>
