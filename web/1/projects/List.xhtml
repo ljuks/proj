@@ -54,16 +54,24 @@
 
                                     </f:facet>
 
-                                    <p:column sortBy="#{item.id}" filterBy="#{item.id}" style="width:5%">
+                                    <p:column sortBy="#{item.id}" filterBy="#{item.id}" style="width:4%">
                                         <f:facet name="header">
                                             <h:outputText value="№"/>
                                         </f:facet>
                                         <h:outputText value="#{item.id}"/>
                                     </p:column>
 
+                                    <p:column sortBy="#{item.catid.name}" filterBy="#{item.catid.name}" headerText="Категория" style="width:5%">
+                                        <f:facet name="filter">
+                                            <p:selectOneMenu onchange="PF('pp').filter()" >
+                                                <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                                                <f:selectItems value="#{projectstatusController.itemsAvailableSelectOne}"/>
+                                            </p:selectOneMenu> 
+                                        </f:facet>
+                                        <h:outputText value="#{item.catid.name}"/>
+                                    </p:column>
 
-
-                                    <p:column sortBy="#{item.statusid.name}" filterBy="#{item.statusid.name}" headerText="Статус" style="width:10%">
+                                    <p:column sortBy="#{item.statusid.name}" filterBy="#{item.statusid.name}" headerText="Статус" style="width:11%">
                                         <f:facet name="filter">
                                             <p:selectOneMenu onchange="PF('pp').filter()" >
                                                 <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
@@ -73,7 +81,7 @@
                                         <h:outputText value="#{item.statusid.name}"/>
                                     </p:column>
 
-                                    <p:column sortBy="#{item.name}" filterBy="#{item.name}" style="width:45%">
+                                    <p:column sortBy="#{item.name}" filterBy="#{item.name}" style="width:40%">
                                         <f:facet name="header">
                                             <h:outputText value="#{bundle.ListProjectsTitle_name}"/>
                                         </f:facet>
@@ -87,27 +95,17 @@
                                         <h:outputText value="#{item.clientid.name}"/>
                                     </p:column>
 
-                                    <p:column sortBy="#{item.typeid.name}" filterBy="#{item.typeid.name}" headerText="Тип проекта" style="width:10%">
+                                    <p:column sortBy="#{item.managerid.fio}" filterBy="#{item.managerid.fio}" headerText="Менеджер проекта" style="width:20%">
                                         <f:facet name="filter">
                                             <p:selectOneMenu onchange="PF('pp').filter()"  >
                                                 <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
                                                 <f:selectItems value="#{projecttypesController.itemsAvailableSelectOne}"/>
                                             </p:selectOneMenu> 
                                         </f:facet>
-                                        <h:outputText value="#{item.typeid.name}"/>
+                                        <h:outputText value="#{item.managerid.fio}"/>
                                     </p:column>
 
-                                    <p:column sortBy="#{item.pdate}" filterBy="#{item.pdate}" headerText="Дата" style="width:10%">
-                                        <f:facet name="filter">
-                                            <p:calendar  title="Дата" navigator="true" pattern="dd/MM/yy" size="10" showButtonPanel="true" locale="ru" >
-                                                <p:ajax event="dateSelect"  oncomplete="PF('pp').filter()"/>
-
-                                            </p:calendar>
-                                        </f:facet>
-                                        <h:outputText value="#{item.pdate}">
-                                            <f:convertDateTime pattern="dd/MM/yy" />
-                                        </h:outputText>
-                                    </p:column>
+                                    
 
 
 
