@@ -54,10 +54,10 @@
                             <h:outputText value="#{item.pid}"/>
                         </p:column>
                         <f:facet name="footer">
-                            <p:commandButton id="createButton" icon="ui-icon-plus"   value="#{bundle1.Create}" actionListener="#{taskstatusController.prepareCreate}" update=":TaskstatusCreateForm" oncomplete="PF('TaskstatusCreateDialog').show()"/>
-                            <p:commandButton id="viewButton"   icon="ui-icon-search" value="#{bundle1.View}" update=":TaskstatusViewForm" oncomplete="PF('TaskstatusViewDialog').show()" disabled="#{empty taskstatusController.selected}"/>
-                            <p:commandButton id="editButton"   icon="ui-icon-pencil" value="#{bundle1.Edit}" update=":TaskstatusEditForm" oncomplete="PF('TaskstatusEditDialog').show()" disabled="#{empty taskstatusController.selected}"/>
-                            <p:commandButton id="deleteButton" icon="ui-icon-trash"  value="#{bundle1.Delete}" actionListener="#{taskstatusController.destroy}" update=":growl,datalist" disabled="#{empty taskstatusController.selected}">
+                            <p:commandButton id="createButton" icon="ui-icon-plus"   value="#{bundle.Create}" actionListener="#{taskstatusController.prepareCreate}" update=":TaskstatusCreateForm" oncomplete="PF('TaskstatusCreateDialog').show()"/>
+                            <p:commandButton id="viewButton"   icon="ui-icon-search" value="#{bundle.View}" update=":TaskstatusViewForm" oncomplete="PF('TaskstatusViewDialog').show()" disabled="#{empty taskstatusController.selected}"/>
+                            <p:commandButton id="editButton"   icon="ui-icon-pencil" value="#{bundle.Edit}" update=":TaskstatusEditForm" oncomplete="PF('TaskstatusEditDialog').show()" disabled="#{empty taskstatusController.selected}"/>
+                            <p:commandButton id="deleteButton" icon="ui-icon-trash"  value="#{bundle.Delete}" actionListener="#{taskstatusController.destroy}" update=":growl,datalist" disabled="#{empty taskstatusController.selected}">
                                 <p:confirm header="" message="Удалить?" icon="ui-icon-alert"/>
                             </p:commandButton>
                         </f:facet>
