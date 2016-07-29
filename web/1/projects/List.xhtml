@@ -133,18 +133,18 @@
                                     <p:ajax event="rowSelect"   update="createButton1 editButton1 deleteButton1"/>
                                     <p:ajax event="rowUnselect" update="createButton1 editButton1 deleteButton1"/>
 
-                                    <p:column sortBy="#{item1.userid.fio}" filterBy="#{item1.userid.fio}" style="width:40%">
-                                        <f:facet name="header">
-                                            <h:outputText value="fio"/>
-                                        </f:facet>
-                                        <h:outputText value="#{item1.userid.fio}"/>
-                                    </p:column>
                                     <p:column sortBy="#{item1.usersptypeid.name}" filterBy="#{item1.usersptypeid.name }" style="width:20%">
                                         <f:facet name="header">
                                             <h:outputText value="Роль"/>
                                         </f:facet>
                                         <h:outputText value="#{item1.usersptypeid.name }"/>
-                                    </p:column>        
+                                    </p:column>  
+                                    <p:column sortBy="#{item1.userid.fio}" filterBy="#{item1.userid.fio}" style="width:40%">
+                                        <f:facet name="header">
+                                            <h:outputText value="Сотрудник"/>
+                                        </f:facet>
+                                        <h:outputText value="#{item1.userid.fio}"/>
+                                    </p:column>
                                     <p:column sortBy="#{item1.kpi}" filterBy="#{item1.kpi}" style="width:20%">
                                         <f:facet name="header">
                                             <h:outputText value="KPI"/>
