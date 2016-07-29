@@ -17,7 +17,7 @@
                                 <p:outputLabel value="#{bundle.EditProjectsLabel_clientid}" for="clientid" />
                             </p:column>
                             <p:column >
-                                <p:selectOneMenu id="clientid" value="#{projectsController.selected.clientid}" >
+                                <p:selectOneMenu id="clientid" required="true" value="#{projectsController.selected.clientid}" >
                                     <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
                                     <f:selectItems value="#{clientController.itemsAvailableSelectOne}"
                                                    var="clientidItem"
@@ -42,7 +42,7 @@
                                 <p:outputLabel value="#{bundle.EditProjectsLabel_name}" for="name" />
                             </p:column>
                             <p:column colspan="2">
-                                <p:inputText id="name" value="#{projectsController.selected.name}" 
+                                <p:inputText id="name" required="true" value="#{projectsController.selected.name}" 
                                              title="#{bundle.EditProjectsTitle_name}" />   
                             </p:column>
                         </p:row> 
@@ -52,7 +52,7 @@
                                 <p:outputLabel value="#{bundle.EditProjectsLabel_managerid}" for="managerid" />            
                             </p:column>
                             <p:column colspan="2">
-                                <p:selectOneMenu id="managerid" value="#{projectsController.selected.managerid}" >
+                                <p:selectOneMenu id="managerid" required="true" value="#{projectsController.selected.managerid}" >
                                     <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
                                     <f:selectItems value="#{usersController.itemsAvailableSelectOne}"
                                                    var="manageridItem"
@@ -161,7 +161,7 @@
                                 <p:outputLabel value="#{bundle.EditProjectsLabel_pdate}" for="pdate" />
                             </p:column>
                             <p:column colspan="2">
-                                <p:calendar id="pdate" pattern="dd/MM/yy" value="#{projectsController.selected.pdate}" 
+                                <p:calendar id="pdate" required="true" pattern="dd/MM/yy" value="#{projectsController.selected.pdate}" 
                                             locale="ru" showOn="button" title="#{bundle.EditProjectsTitle_pdate}"  />    
                             </p:column>
                         </p:row>
