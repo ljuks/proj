@@ -22,13 +22,14 @@
                         </p:selectOneMenu>
                         <p:outputLabel value="#{bundle777.CreateProjectpersonsLabel_usersptypeid}" for="usersptypeid" />
                         <p:selectOneMenu id="usersptypeid" value="#{projectpersonsController.selected.usersptypeid}" >
+                            <p:ajax listener="#{projectpersonsController.onChangeMenu}" update="kpi" />
                             <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
                             <f:selectItems value="#{usersptypeController.itemsAvailableSelectOne}"
                                            var="usersptypidItem"
                                            itemValue="#{usersptypeidItem}"
                                            itemLabel="#{usersptypeidItem.name}"/>
                         </p:selectOneMenu>
-                        <p:outputLabel value="KPI" for="kpi" />                       
+                        <p:outputLabel value="%" for="kpi" />                       
                         <h:inputText id="kpi" value="#{projectpersonsController.selected.kpi}" >
                             <f:convertNumber type="number"/>
                         </h:inputText>

@@ -6,6 +6,7 @@ import beans.util.JsfUtil.PersistAction;
 import controllers.ProjectpersonsFacade;
 
 import java.io.Serializable;
+import java.math.BigDecimal;
 import java.util.List;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
@@ -38,7 +39,9 @@ public class ProjectpersonsController implements Serializable {
     private int projectsid;
 
     public ProjectpersonsController() {
+       
     }
+
 
     public void projselect(SelectEvent event) {
 
@@ -86,6 +89,12 @@ public class ProjectpersonsController implements Serializable {
         initializeEmbeddableKey();
         selected.setProjectid(this.getProjectsid());
         return selected;
+    }
+    
+    public void onChangeMenu(){
+   
+      
+        this.selected.setKpi(this.selected.getUsersptypeid().getPercent());       
     }
 
     public void create() {

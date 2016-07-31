@@ -6,6 +6,7 @@
 package jpa;
 
 import java.io.Serializable;
+import java.math.BigDecimal;
 import java.util.Collection;
 import javax.persistence.Basic;
 import javax.persistence.CascadeType;
@@ -49,7 +50,7 @@ public class Usersptype implements Serializable {
     @Column(name = "percent")
     @Min(0)
     @Max(100)
-    private String percent;
+    private BigDecimal percent;
 
     @OneToMany( mappedBy = "usersptypeid")
     private Collection<Projectpersons> projectpersonsCollection;
@@ -77,14 +78,15 @@ public class Usersptype implements Serializable {
         this.name = name;
     }
 
-    public String getPercent() {
+    public BigDecimal getPercent() {
         return percent;
     }
 
-    public void setPercent(String percent) {
+    public void setPercent(BigDecimal percent) {
         this.percent = percent;
     }
 
+ 
     public Collection<Projectpersons> getProjectpersonsCollection() {
         return projectpersonsCollection;
     }
