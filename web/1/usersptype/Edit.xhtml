@@ -12,10 +12,10 @@
             <h:form id="UsersptypeEditForm">
                 <h:panelGroup id="display">
                     <p:panelGrid columns="2" rendered="#{usersptypeController.selected != null}">
-                        <p:outputLabel value="#{bundle777.EditUsersptypeLabel_id}" for="id" />
-                        <p:inputText id="id" value="#{usersptypeController.selected.id}" title="#{bundle777.EditUsersptypeTitle_id}" required="true" requiredMessage="#{bundle777.EditUsersptypeRequiredMessage_id}"/>
-                        <p:outputLabel value="#{bundle777.EditUsersptypeLabel_name}" for="name" />
-                        <p:inputText id="name" value="#{usersptypeController.selected.name}" title="#{bundle777.EditUsersptypeTitle_name}" />
+                         <p:outputLabel value="#{bundle777.CreateUsersptypeLabel_name}" for="name" />
+                        <p:inputText id="name" value="#{usersptypeController.selected.name}" title="#{bundle777.CreateUsersptypeTitle_name}" />
+                        <p:outputLabel value="Процент" for="percent" />
+                        <p:inputText id="percent" value="#{usersptypeController.selected.percent}" title="Процент" />
                     </p:panelGrid>
                     <p:commandButton actionListener="#{usersptypeController.update}" value="#{bundle777.Save}" update="display,:UsersptypeListForm:datalist,:growl" oncomplete="handleSubmit(args, 'UsersptypeEditDialog');"/>
                     <p:commandButton value="#{bundle777.Cancel}" onclick="UsersptypeEditDialog.hide()"/>

@@ -18,6 +18,8 @@ import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
 
@@ -43,6 +45,11 @@ public class Usersptype implements Serializable {
     @Size(max = 30)
     @Column(name = "name")
     private String name;
+    
+    @Column(name = "percent")
+    @Min(0)
+    @Max(100)
+    private String percent;
 
     @OneToMany( mappedBy = "usersptypeid")
     private Collection<Projectpersons> projectpersonsCollection;
@@ -70,6 +77,24 @@ public class Usersptype implements Serializable {
         this.name = name;
     }
 
+    public String getPercent() {
+        return percent;
+    }
+
+    public void setPercent(String percent) {
+        this.percent = percent;
+    }
+
+    public Collection<Projectpersons> getProjectpersonsCollection() {
+        return projectpersonsCollection;
+    }
+
+    public void setProjectpersonsCollection(Collection<Projectpersons> projectpersonsCollection) {
+        this.projectpersonsCollection = projectpersonsCollection;
+    }
+
+    
+    
     @Override
     public int hashCode() {
         int hash = 0;

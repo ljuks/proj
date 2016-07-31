@@ -14,7 +14,13 @@
                     <p:panelGrid columns="2" rendered="#{usersptypeController.selected != null}">
                         <p:outputLabel value="#{bundle777.CreateUsersptypeLabel_name}" for="name" />
                         <p:inputText id="name" value="#{usersptypeController.selected.name}" title="#{bundle777.CreateUsersptypeTitle_name}" />
+                        <p:outputLabel value="Процент" for="percent" />
+                        <p:inputText id="percent" value="#{usersptypeController.selected.percent}" title="Процент" />
+
                     </p:panelGrid>
+
+
+
                     <p:commandButton actionListener="#{usersptypeController.create}" value="#{bundle777.Save}" update="display,:UsersptypeListForm:datalist,:growl" oncomplete="handleSubmit(args,'UsersptypeCreateDialog');"/>
                     <p:commandButton value="#{bundle777.Cancel}" onclick="UsersptypeCreateDialog.hide()"/>
                 </h:panelGroup>

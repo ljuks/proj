@@ -39,6 +39,14 @@
                             </f:facet>
                             <h:outputText value="#{item.name}"/>
                         </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="Процент"/>
+                            </f:facet>
+                            <h:outputText value="#{item.percent}"/>
+                        </p:column>
+
+
                         <f:facet name="footer">
                             <p:commandButton id="createButton" icon="ui-icon-plus"   value="#{bundle777.Create}" actionListener="#{usersptypeController.prepareCreate}" update=":UsersptypeCreateForm" oncomplete="PF('UsersptypeCreateDialog').show()"/>
                             <p:commandButton id="viewButton"   icon="ui-icon-search" value="#{bundle777.View}" update=":UsersptypeViewForm" oncomplete="PF('UsersptypeViewDialog').show()" disabled="#{empty usersptypeController.selected}"/>
