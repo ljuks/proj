@@ -33,57 +33,44 @@
                             </f:facet>
                             <h:outputText value="#{item.id}"/>
                         </p:column>
-                        <p:column>
+                        <p:column sortBy="#{item.name}" filterBy="#{item.name}" filterMatchMode="contains" >
                             <f:facet name="header">
                                 <h:outputText value="#{bundle.ListClientTitle_name}"/>
                             </f:facet>
                             <h:outputText value="#{item.name}"/>
                         </p:column>
-                        <p:column>
+                        <p:column sortBy="#{item.okpo}" filterBy="#{item.okpo}" filterMatchMode="contains">
                             <f:facet name="header">
                                 <h:outputText value="#{bundle.ListClientTitle_okpo}"/>
                             </f:facet>
                             <h:outputText value="#{item.okpo}"/>
                         </p:column>
-                        <p:column>
+                        <p:column sortBy="#{item.addressl}" filterBy="#{item.addressl}" filterMatchMode="contains">
                             <f:facet name="header">
                                 <h:outputText value="#{bundle.ListClientTitle_addressl}"/>
                             </f:facet>
                             <h:outputText value="#{item.addressl}"/>
                         </p:column>
-                        <p:column>
+                        <p:column sortBy="#{item.addressp}" filterBy="#{item.addressp}" filterMatchMode="contains">
                             <f:facet name="header">
                                 <h:outputText value="#{bundle.ListClientTitle_addressp}"/>
                             </f:facet>
                             <h:outputText value="#{item.addressp}"/>
                         </p:column>
-                        <p:column>
+                        <p:column sortBy="#{item.phone}" filterBy="#{item.phone}" filterMatchMode="contains">
                             <f:facet name="header">
                                 <h:outputText value="#{bundle.ListClientTitle_phone}"/>
                             </f:facet>
                             <h:outputText value="#{item.phone}"/>
                         </p:column>
-                        <p:column>
+                        <p:column sortBy="#{item.addresse}" filterBy="#{item.addresse}" filterMatchMode="contains">
                             <f:facet name="header">
                                 <h:outputText value="#{bundle.ListClientTitle_addresse}"/>
                             </f:facet>
                             <h:outputText value="#{item.addresse}"/>
                         </p:column>
 
-                        <p:column>
-                            <f:facet name="header">
-                                <h:outputText value="#{bundle.ListClientTitle_pid}"/>
-                            </f:facet>
-                            <h:outputText value="#{item.pid}"/>
-                        </p:column>
-                        <p:column>
-                            <f:facet name="header">
-                                <h:outputText value="#{bundle.ListClientTitle_ts}"/>
-                            </f:facet>
-                            <h:outputText value="#{item.ts}">
-                                <f:convertDateTime pattern="dd/MM HH:mm" />
-                            </h:outputText>
-                        </p:column>
+
                         <f:facet name="footer">
                             <p:commandButton id="createButton" icon="ui-icon-plus"   value="#{bundle.Create}" actionListener="#{clientController.prepareCreate}" update=":ClientCreateForm" oncomplete="PF('ClientCreateDialog').show()"/>
                             <p:commandButton id="viewButton"   icon="ui-icon-search" value="#{bundle.View}" update=":ClientViewForm" oncomplete="PF('ClientViewDialog').show()" disabled="#{empty clientController.selected}"/>

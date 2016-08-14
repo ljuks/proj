@@ -53,7 +53,7 @@
 
                         </f:facet>
 
-                        <p:column sortBy="#{item.tdate}"  headerText="Дата" visible="true">
+                        <p:column sortBy="#{item.tdate}" filterBy="#{item.tdate}" headerText="Дата" visible="true">
                             <f:facet name="filter">
                                 <p:calendar id="calendar" 
                                             title="Дата" navigator="true" 
@@ -143,6 +143,7 @@
                         </p:column>
                         <f:facet name="footer">
                             <p:commandButton id="createButton" icon="ui-icon-plus"   value="#{bundle.Create}" actionListener="#{sheduleController.prepareCreate}" update=":SheduleCreateForm" oncomplete="PF('SheduleCreateDialog').show()"/>
+                            <p:commandButton id="createSeveralButton" icon="ui-icon-plus"   value="#{bundle.Create}"  update=":SheduleCreateSeveralForm" oncomplete="PF('SheduleCreateSeveralDialog').show()"/>
                             <p:commandButton id="viewButton"   icon="ui-icon-search" value="#{bundle.View}" update=":SheduleViewForm" oncomplete="PF('SheduleViewDialog').show()" disabled="#{empty sheduleController.selected}"/>
                             <p:commandButton id="editButton"   icon="ui-icon-pencil" value="#{bundle.Edit}" update=":SheduleEditForm" oncomplete="PF('SheduleEditDialog').show()" disabled="#{empty sheduleController.selected}"/>
                             <p:commandButton id="deleteButton" icon="ui-icon-trash"  value="#{bundle.Delete}" actionListener="#{sheduleController.destroy}" update=":growl,datalist" disabled="#{empty sheduleController.selected}"/>
@@ -162,6 +163,7 @@
             </h:form>
 
             <ui:include src="Create.xhtml"/>
+            <ui:include src="CreateSeveral.xhtml"/>
             <ui:include src="Edit.xhtml"/>
             <ui:include src="View.xhtml"/>
 
