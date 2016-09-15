@@ -290,7 +290,7 @@ public class Projects implements Serializable {
 
     @Override
     public String toString() {
-        return "jpa.Projects[ id=" + id + " ]";
+        return  name;
     }
 
 }

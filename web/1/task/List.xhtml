@@ -1,0 +1,174 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition template="/#{pro.dpass}/template.xhtml">
+
+
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ListSheduleTitle}"></h:outputText>            
+        </ui:define>
+
+        <ui:define name="body">
+            <h:form id="SheduleListForm">
+                <p:panel header="#{bundle.ListSheduleTitle}">
+                    <p:contextMenu id="SheduleDataTableContextMenu" for="datalist">  
+                        <p:menuitem icon="ui-icon-plus"   value="#{bundle.Create}" actionListener="#{sheduleController.prepareCreate}" update=":SheduleCreateForm" oncomplete="PF('SheduleCreateDialog').show()"/>
+                        <p:menuitem value="1" onclick="document.getElementById('SheduleListForm:viewButton').click();" icon="ui-icon-search"/>
+                        <p:menuitem value="#{myBundle.Edit}" onclick="document.getElementById('SheduleListForm:editButton').click();" icon="ui-icon-pencil"/>
+                        <p:menuitem value="#{myBundle.Delete}" onclick="document.getElementById('SheduleListForm:deleteButton').click();" icon="ui-icon-trash"/>
+                    </p:contextMenu>
+                    <p:dataTable id="datalist" value="#{sheduleController.items}" var="item"
+                                 selectionMode="single" selection="#{sheduleController.selected}"
+                                 paginator="true"
+                                 paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {Exporters}"
+                                 paginatorPosition="bottom"
+                                 rowKey="#{item.id}"
+                                 rows="20"
+                                 rowsPerPageTemplate="10,20,30,40,50"
+                                 widgetVar="tt"
+                                 >
+
+                        <p:ajax event="rowSelect"   update="createButton viewButton editButton deleteButton"/>
+                        <p:ajax event="rowUnselect" update="createButton viewButton editButton deleteButton"/>
+
+                        <f:facet name="{Exporters}"  >
+
+
+
+                            <p:inputText title="Поиск" id="globalFilter" onkeyup="PF('tt').filter()" style="width:150px; float: right" /> 
+                            <!--                                        <h:outputText value="Глобальный поиск:" style="float: right" /> -->
+                            <h:commandLink style="float: right">
+                                <p:graphicImage name="images/excel.png" width="24"/> 
+                                <p:dataExporter type="xls" target="datalist" fileName="projects"/>
+                            </h:commandLink>
+                            <!--                                       <p:outputPanel style="text-align:right"> -->
+
+
+                            <!--                                        </p:outputPanel> -->
+
+                        </f:facet>
+
+                        <p:column sortBy="#{item.tdate}" filterBy="#{item.tdate}" headerText="Дата" visible="true">
+                            <f:facet name="filter">
+                                <p:calendar id="calendar" 
+                                            title="Дата" navigator="true" 
+                                            pattern="dd/MM/yyyy" size="10" 
+                                            value="#{sheduleController.da}"
+                                            showOn="button" showButtonPanel="true" locale="ru" >
+                                    <p:ajax event="dateSelect"  oncomplete="PF('tt').filter()"/>
+
+                                </p:calendar>
+                            </f:facet>
+                            <h:outputText value="#{item.tdate}">
+                                <f:convertDateTime pattern="dd/MM/yy" />
+                            </h:outputText>
+                        </p:column>
+
+                        <p:column sortBy="#{item.starttime}" style="width: 30px" >
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListSheduleTitle_starttime}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.starttime}" >
+                                <f:convertDateTime pattern="HH:mm" />
+                            </h:outputText>
+                        </p:column>
+                        <p:column sortBy="#{item.endtime}" style="width: 30px">
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListSheduleTitle_endtime}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.endtime}">
+                                <f:convertDateTime pattern="HH:mm" />
+                            </h:outputText>
+                        </p:column>
+                        <p:column sortBy="#{item.task}" filterBy="#{item.task}">
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListSheduleTitle_task}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.task}"/>
+                        </p:column>
+                        <p:column sortBy="#{item.projectid.name}" filterBy="#{item.projectid.name}">
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListSheduleTitle_projectid}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.projectid.name}"/>
+                        </p:column>
+
+                        <p:column sortBy="#{item.projectid.clientid.name}" filterBy="#{item.projectid.clientid.name}" headerText="Предприятие" >
+                            <f:facet name="filter">
+                                <p:selectOneMenu onchange="PF('tt').filter()" >
+                                    <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                                    <f:selectItems value="#{clientController.itemsAvailableSelectOne}"/>
+
+
+                                </p:selectOneMenu> 
+                            </f:facet>
+                            <h:outputText value="#{item.projectid.clientid.name}"/>
+                        </p:column>
+
+                        <p:column sortBy="#{item.cpid.name}" filterBy="#{item.cpid.name}" headerText="Конт. лицо">
+                            <f:facet name="filter">
+                                <p:selectOneMenu onchange="PF('tt').filter()" >
+                                    <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                                    <f:selectItems value="#{contactpersonController.itemsAvailableSelectOne}"/>
+
+
+                                </p:selectOneMenu> 
+                            </f:facet>
+                            <h:outputText value="#{item.userid.fio}"/>
+                        </p:column>
+
+                        <p:column sortBy="#{item.managerid.fio}" filterBy="#{item.managerid.fio}" headerText="Руководитель">
+                            <f:facet name="filter">
+                                <p:selectOneMenu onchange="PF('tt').filter()" >
+                                    <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                                    <f:selectItems value="#{usersController.itemsAvailableSelectOne}"/>
+                                </p:selectOneMenu> 
+                            </f:facet>
+                            <h:outputText value="#{item.managerid.fio}"/>
+                        </p:column>
+
+                        <p:column sortBy="#{item.statusid.name}" filterBy="#{item.statusid.name}" headerText="Статус">
+                            <f:facet name="filter">
+                                <p:selectOneMenu onchange="PF('tt').filter()" >
+                                    <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                                    <f:selectItems value="#{taskstatusController.itemsAvailableSelectOne}"/>
+                                </p:selectOneMenu> 
+                            </f:facet>
+                            <h:outputText value="#{item.statusid.name}"/>
+                        </p:column>
+                        <f:facet name="footer">
+                            <p:commandButton id="createButton" icon="ui-icon-plus"   value="#{bundle.Create}" actionListener="#{sheduleController.prepareCreate}" update=":SheduleCreateForm" oncomplete="PF('SheduleCreateDialog').show()"/>
+                            <p:commandButton id="createSeveralButton" icon="ui-icon-plus"   value="#{bundle.Create}"  update=":SheduleCreateSeveralForm" oncomplete="PF('SheduleCreateSeveralDialog').show()"/>
+                            <p:commandButton id="viewButton"   icon="ui-icon-search" value="#{bundle.View}" update=":SheduleViewForm" oncomplete="PF('SheduleViewDialog').show()" disabled="#{empty sheduleController.selected}"/>
+                            <p:commandButton id="editButton"   icon="ui-icon-pencil" value="#{bundle.Edit}" update=":SheduleEditForm" oncomplete="PF('SheduleEditDialog').show()" disabled="#{empty sheduleController.selected}"/>
+                            <p:commandButton id="deleteButton" icon="ui-icon-trash"  value="#{bundle.Delete}" actionListener="#{sheduleController.destroy}" update=":growl,datalist" disabled="#{empty sheduleController.selected}"/>
+                            <p:commandButton style="width:24px; float:right" icon="ui-icon-close" oncomplete="PF('tt').clearFilters()" update="datalist, cf" actionListener="#{sheduleController.clearda}" />
+                            <p:calendar  id="cf" title="Дата" navigator="true" style="width:150px; float: right"
+                                         value="#{sheduleController.da}" pattern="dd/MM/yyyy" size="10" showOn="button" showButtonPanel="true" locale="ru" >
+                                <p:ajax event="dateSelect"  oncomplete="PF('tt').filter()" update="calendar"/>
+
+                            </p:calendar>
+                            <h:outputText value="Фильтр по дате"   style="width:100px; float: right; margin-top: 15px; font-weight: normal; text-transform: none"></h:outputText>
+                                                    
+                            
+
+                        </f:facet>
+                    </p:dataTable>
+                </p:panel>
+            </h:form>
+
+            <ui:include src="Create.xhtml"/>
+            <ui:include src="CreateSeveral.xhtml"/>
+            <ui:include src="Edit.xhtml"/>
+            <ui:include src="View.xhtml"/>
+
+
+        </ui:define>
+    </ui:composition>
+
+</html>
