@@ -69,22 +69,7 @@
                             </h:outputText>
                         </p:column>
 
-                        <p:column sortBy="#{item.starttime}" style="width: 30px" >
-                            <f:facet name="header">
-                                <h:outputText value="#{bundle.ListSheduleTitle_starttime}"/>
-                            </f:facet>
-                            <h:outputText value="#{item.starttime}" >
-                                <f:convertDateTime pattern="HH:mm" />
-                            </h:outputText>
-                        </p:column>
-                        <p:column sortBy="#{item.endtime}" style="width: 30px">
-                            <f:facet name="header">
-                                <h:outputText value="#{bundle.ListSheduleTitle_endtime}"/>
-                            </f:facet>
-                            <h:outputText value="#{item.endtime}">
-                                <f:convertDateTime pattern="HH:mm" />
-                            </h:outputText>
-                        </p:column>
+    
                         <p:column sortBy="#{item.task}" filterBy="#{item.task}">
                             <f:facet name="header">
                                 <h:outputText value="#{bundle.ListSheduleTitle_task}"/>
@@ -98,29 +83,9 @@
                             <h:outputText value="#{item.projectid.name}"/>
                         </p:column>
 
-                        <p:column sortBy="#{item.projectid.clientid.name}" filterBy="#{item.projectid.clientid.name}" headerText="Предприятие" >
-                            <f:facet name="filter">
-                                <p:selectOneMenu onchange="PF('tt').filter()" >
-                                    <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
-                                    <f:selectItems value="#{clientController.itemsAvailableSelectOne}"/>
 
 
-                                </p:selectOneMenu> 
-                            </f:facet>
-                            <h:outputText value="#{item.projectid.clientid.name}"/>
-                        </p:column>
-
-                        <p:column sortBy="#{item.cpid.name}" filterBy="#{item.cpid.name}" headerText="Конт. лицо">
-                            <f:facet name="filter">
-                                <p:selectOneMenu onchange="PF('tt').filter()" >
-                                    <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
-                                    <f:selectItems value="#{contactpersonController.itemsAvailableSelectOne}"/>
-
-
-                                </p:selectOneMenu> 
-                            </f:facet>
-                            <h:outputText value="#{item.userid.fio}"/>
-                        </p:column>
+ 
 
                         <p:column sortBy="#{item.managerid.fio}" filterBy="#{item.managerid.fio}" headerText="Руководитель">
                             <f:facet name="filter">
