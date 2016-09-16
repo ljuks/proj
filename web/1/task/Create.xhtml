@@ -1,0 +1,221 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="SheduleCreateDlg" widgetVar="SheduleCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.CreateSheduleTitle}">
+            <h:form id="SheduleCreateForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid  rendered="#{sheduleController.selected != null}" >
+                        <p:row>
+                            <p:column>
+                                <p:outputLabel value="#{bundle.EditSheduleLabel_tdate}" for="tdate" />    
+                            </p:column>
+                            <p:column colspan="2">
+                                <p:calendar id="tdate" pattern="dd/MM/yy" value="#{sheduleController.selected.tdate}" 
+                                            title="#{bundle.EditSheduleTitle_tdate}" locale="ru" showOn="button"/>
+                            </p:column>
+                        </p:row>
+                        <p:row>
+                            <p:column>
+                                <p:outputLabel value="#{bundle.EditSheduleLabel_starttime}" for="starttime" />
+                            </p:column>
+                            <p:column colspan="2">
+                                <p:calendar id="starttime" pattern="HH:mm" value="#{sheduleController.selected.starttime}" 
+                                            timeOnly="true" title="#{bundle.EditSheduleTitle_starttime}"  showOn="button"/>
+                            </p:column>
+                        </p:row>
+                        <p:row>
+                            <p:column>
+                                <p:outputLabel value="#{bundle.EditSheduleLabel_endtime}" for="endtime" />
+                            </p:column>
+                            <p:column colspan="2">
+                                <p:calendar id="endtime" pattern="HH:mm" value="#{sheduleController.selected.endtime}"  
+                                            timeOnly="true" title="#{bundle.EditSheduleTitle_endtime}"  showOn="button"/>
+                            </p:column>
+                        </p:row>
+                        <p:row>
+                            <p:column>
+                                <p:outputLabel value="Тип задачи" for="task1id" />
+                            </p:column>
+                            <p:column colspan="2">
+                                <p:selectOneMenu id="task1id" value="#{sheduleController.selected.task1id}" >
+                                    <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                                    <f:selectItems value="#{tasktype1Controller.itemsAvailableSelectOne}"
+                                                   var="task1idItem"
+                                                   itemValue="#{task1idItem}"
+                                                   itemLabel="#{task1idItem.name}"/>
+                                </p:selectOneMenu>
+                            </p:column>
+                        </p:row>
+                        <p:row>
+                            <p:column>
+                                <p:outputLabel value="Исполнитель" for="userid" />
+                            </p:column>
+                            <p:column colspan="2">
+                                <p:selectOneMenu id="userid" value="#{sheduleController.selected.userid}" >
+                                    <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                                    <f:selectItems value="#{usersController.itemsAvailableSelectOne}"
+                                                   var="usersidItem"
+                                                   itemValue="#{usersidItem}"
+                                                   itemLabel="#{usersidItem.fio}"/>
+                                </p:selectOneMenu>
+                            </p:column>                            
+                        </p:row>
+
+                        <p:row>
+                            <p:column>
+                                <p:outputLabel value="Проект" for="projectid" />
+                            </p:column>
+                            <p:column>
+                                <p:selectOneMenu id="projectid" value="#{sheduleController.selected.projectid}" >
+                                    <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                                    <f:selectItems value="#{projectsController.itemsAvailableSelectOne}"
+                                                   var="projectidItem"
+                                                   itemValue="#{projectidItem}"
+                                                   itemLabel="#{projectidItem.name}"/>
+                                </p:selectOneMenu>
+                            </p:column>
+                            <p:column>
+                                <p:commandButton id="createpButton" icon="ui-icon-plus"   value="#{bundle.Create}" 
+                                                 actionListener ="#{projectsController.prepareCreate()}"
+                                                 update="projectid,  :ProjectsCreateForm" 
+                                                 oncomplete ="PF('ProjectsCreateDialog').show()"/>
+                            </p:column>
+                        </p:row>
+
+
+                        <p:row>
+                            <p:column>
+                                <p:outputLabel value="Предприятие" for="clientid" />          
+                            </p:column>
+                            <p:column>
+                                <p:selectOneMenu id="clientid" value="#{sheduleController.selected.clientid}" >
+                                    <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                                    <f:selectItems value="#{clientController.itemsAvailableSelectOne}"
+                                                   var="clientidItem"
+                                                   itemValue="#{clientidItem}"
+                                                   itemLabel="#{clientidItem.name}"/>
+                                </p:selectOneMenu> 
+                            </p:column>
+                            <p:column>
+                                <p:commandButton id="createpButton1" icon="ui-icon-plus"   value="#{bundle.Create}" 
+                                                 actionListener ="#{clientController.prepareCreate()}"
+                                                 update="projectid,  :ClientCreateForm" 
+                                                 oncomplete ="PF('ClientCreateDialog').show()"/>
+                            </p:column>
+                        </p:row>
+                        <p:row>
+                            <p:column>
+                                <p:outputLabel value="Контактное лицо" for="cpid" />   
+                            </p:column>
+                            <p:column>
+
+                                <p:selectOneMenu id="cpid" value="#{sheduleController.selected.cpid}" >
+                                    <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                                    <f:selectItems value="#{contactpersonController.itemsAvailableSelectOne}"
+                                                   var="cpidItem"
+                                                   itemValue="#{cpidItem}"
+                                                   itemLabel="#{cpidItem.name}"/>
+                                </p:selectOneMenu>
+                            </p:column>
+                            <p:column>
+                                <p:commandButton id="createpButton2" icon="ui-icon-plus"   value="#{bundle.Create}" 
+                                                 actionListener ="#{contactpersonController.prepareCreate()}"
+                                                 update="projectid,  :ContactpersonCreateForm" 
+                                                 oncomplete ="PF('ContactpersonCreateDialog').show()"/>
+                            </p:column>
+                        </p:row>
+                        <p:row>
+                            <p:column colspan="3" styleClass="ui-widget-header"> Задание </p:column>
+                        </p:row>
+                        <p:row>
+                            <p:column>
+                                <p:outputLabel value="Типовая задача" for="taskid" />   
+                            </p:column>
+                            <p:column colspan="2">
+                                <p:selectOneMenu id="taskid" value="#{sheduleController.selected.taskid}" >
+                                    <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                                    <f:selectItems value="#{tasktypeController.itemsAvailableSelectOne}"
+                                                   var="taskidItem"
+                                                   itemValue="#{taskidItem}"
+                                                   itemLabel="#{taskidItem.name}"/>
+                                </p:selectOneMenu>
+                            </p:column>
+                        </p:row>
+                        <p:row>
+                            <p:column>
+                                <p:outputLabel value="Содержание" for="description" />                            
+                            </p:column>
+                            <p:column colspan="2">
+                                <p:inputTextarea rows="4" cols="60" id="description" 
+                                                 value="#{sheduleController.selected.description}" 
+                                                 title="#{bundle.CreateProjectsTitle_pdesc}" />
+                            </p:column>
+                        </p:row>
+                        <f:facet name="header">
+                            <p:row>
+                                <p:column colspan="3"></p:column>
+                            </p:row>
+                        </f:facet>
+                        <p:row>
+                            <p:column>
+                                <p:outputLabel value="Контроль" for="controlid" />
+                            </p:column>
+                            <p:column colspan="2">
+
+                                <p:selectOneMenu id="controlid" value="#{sheduleController.selected.controlid}" >
+                                    <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                                    <f:selectItems value="#{usersController.itemsAvailableSelectOne}"
+                                                   var="controlidItem"
+                                                   itemValue="#{contolidItem}"
+                                                   itemLabel="#{controlidItem.fio}"/>
+                                </p:selectOneMenu>   
+                            </p:column>
+                        </p:row>
+                        <p:row>
+                            <p:column>
+                                <p:outputLabel value="Задачу поставил" for="managerid" />                               
+                            </p:column>
+                            <p:column colspan="2">
+
+                                <p:selectOneMenu id="managerid" value="#{sheduleController.selected.managerid}" >
+                                    <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                                    <f:selectItems value="#{usersController.itemsAvailableSelectOne}"
+                                                   var="manageridItem"
+                                                   itemValue="#{manageridItem}"
+                                                   itemLabel="#{manageridItem.fio}"/>
+                                </p:selectOneMenu> 
+                            </p:column>
+                        </p:row>
+                        <p:row>
+                            <p:column>
+                                <p:outputLabel value="Статус" for="statusid" />                                
+                            </p:column>
+
+                            <p:column colspan="2">
+                                <p:selectOneMenu id="statusid" value="#{sheduleController.selected.statusid}" >
+                                    <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                                    <f:selectItems value="#{taskstatusController.itemsAvailableSelectOne}"
+                                                   var="statusidItem"
+                                                   itemValue="#{statusidItem}"
+                                                   itemLabel="#{statusidItem.name}"/>
+                                </p:selectOneMenu>                                
+
+                            </p:column>
+                        </p:row>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{sheduleController.create}" value="#{bundle.Save}" update="display,:SheduleListForm:datalist,:growl" oncomplete="handleSubmit(args,'SheduleCreateDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="SheduleCreateDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+        <ui:include src="/#{pro.dpass}/projects/Create_1.xhtml"/>
+        <ui:include src="/#{pro.dpass}/contactperson/Create_2.xhtml"/>
+    </ui:composition>
+</html>

@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="SheduleViewDlg" widgetVar="SheduleViewDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.ViewSheduleTitle}">
+            <h:form id="SheduleViewForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{sheduleController.selected != null}">
+                        <h:outputText value="#{bundle.ViewSheduleLabel_id}"/>
+                        <h:outputText value="#{sheduleController.selected.id}" title="#{bundle.ViewSheduleTitle_id}"/>
+                        <h:outputText value="#{bundle.ViewSheduleLabel_tdate}"/>
+                        <h:outputText value="#{sheduleController.selected.tdate}" title="#{bundle.ViewSheduleTitle_tdate}">
+                            <f:convertDateTime pattern="dd/MM/yy" />
+                        </h:outputText>
+                        <h:outputText value="#{bundle.ViewSheduleLabel_starttime}"/>
+                        <h:outputText value="#{sheduleController.selected.starttime}" title="#{bundle.ViewSheduleTitle_starttime}">
+                            <f:convertDateTime pattern="HH:mm" />
+                        </h:outputText>
+                        <h:outputText value="#{bundle.ViewSheduleLabel_endtime}"/>
+                        <h:outputText value="#{sheduleController.selected.endtime}" title="#{bundle.ViewSheduleTitle_endtime}">
+                            <f:convertDateTime pattern="HH:mm" />
+                        </h:outputText>
+                        <h:outputText value="Исполнитель"/>
+                        <h:outputText value="#{sheduleController.selected.userid.fio}"/>
+                        <h:outputText value="Проект"/>
+                        <h:outputText value="#{sheduleController.selected.projectid.name}"/>
+                        <h:outputText value="Предприятие"/>
+                        <h:outputText value="#{sheduleController.selected.clientid.name}"/>
+                        <h:outputText value="Контактное лицо"/>
+                        <h:outputText value="#{sheduleController.selected.cpid.name}"/>                                      
+
+
+
+
+
+
+
+                        <h:outputText value="Типовая задача"/>
+                        <h:outputText value="#{sheduleController.selected.taskid.name}"/>
+                        <h:outputText value="Содержание"/>
+                        <h:outputText value="#{sheduleController.selected.description}"/>
+                        <h:outputText value="Контроль"/>
+                        <h:outputText value="#{sheduleController.selected.controlid.fio}"/>
+                        <h:outputText value="Задачу поставил"/>
+                        <h:outputText value="#{sheduleController.selected.managerid.fio}"/>   
+                        <h:outputText value="Статус"/>
+                        <h:outputText value="#{sheduleController.selected.statusid.name}"/>   
+                                                
+                        
+                        <h:outputText value="#{bundle.ViewSheduleLabel_pid}"/>
+                        <h:outputText value="#{sheduleController.selected.pid}" title="#{bundle.ViewSheduleTitle_pid}"/>
+                        <h:outputText value="#{bundle.ViewSheduleLabel_ts}"/>
+                        <h:outputText value="#{sheduleController.selected.ts}" title="#{bundle.ViewSheduleTitle_ts}">
+                            <f:convertDateTime pattern="MM/dd/yyyy HH:mm" />
+                        </h:outputText>
+
+
+
+                    </p:panelGrid>
+                    <p:commandButton value="#{bundle.Close}" onclick="SheduleViewDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>
