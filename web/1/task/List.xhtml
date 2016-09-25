@@ -69,7 +69,7 @@
                             </h:outputText>
                         </p:column>
 
-    
+
                         <p:column sortBy="#{item.task}" filterBy="#{item.task}">
                             <f:facet name="header">
                                 <h:outputText value="#{bundle.ListSheduleTitle_task}"/>
@@ -85,27 +85,30 @@
 
 
 
- 
 
-                        <p:column sortBy="#{item.managerid.fio}" filterBy="#{item.managerid.fio}" headerText="Руководитель">
+
+                        <p:column sortBy="#{item.userid.fio}" filterBy="#{item.userid.fio}" headerText="Исполнитель">
                             <f:facet name="filter">
                                 <p:selectOneMenu onchange="PF('tt').filter()" >
                                     <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
                                     <f:selectItems value="#{usersController.itemsAvailableSelectOne}"/>
                                 </p:selectOneMenu> 
                             </f:facet>
-                            <h:outputText value="#{item.managerid.fio}"/>
+                            <h:outputText value="#{item.userid.fio}"/>
                         </p:column>
 
-                        <p:column sortBy="#{item.statusid.name}" filterBy="#{item.statusid.name}" headerText="Статус">
+                        <p:column sortBy="#{item.controlid.fio}" filterBy="#{item.controlid.fio}" headerText="Контроль">
                             <f:facet name="filter">
                                 <p:selectOneMenu onchange="PF('tt').filter()" >
                                     <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
-                                    <f:selectItems value="#{taskstatusController.itemsAvailableSelectOne}"/>
+                                    <f:selectItems value="#{usersController.itemsAvailableSelectOne}"/>
                                 </p:selectOneMenu> 
                             </f:facet>
-                            <h:outputText value="#{item.statusid.name}"/>
+                            <h:outputText value="#{item.controlid.fio}"/>
                         </p:column>
+
+
+
                         <f:facet name="footer">
                             <p:commandButton id="createButton" icon="ui-icon-plus"   value="#{bundle.Create}" actionListener="#{sheduleController.prepareCreate}" update=":SheduleCreateForm" oncomplete="PF('SheduleCreateDialog').show()"/>
                             <p:commandButton id="createSeveralButton" icon="ui-icon-plus"   value="#{bundle.Create}"  update=":SheduleCreateSeveralForm" oncomplete="PF('SheduleCreateSeveralDialog').show()"/>
@@ -119,8 +122,8 @@
 
                             </p:calendar>
                             <h:outputText value="Фильтр по дате"   style="width:100px; float: right; margin-top: 15px; font-weight: normal; text-transform: none"></h:outputText>
-                                                    
-                            
+
+
 
                         </f:facet>
                     </p:dataTable>
