@@ -37,7 +37,11 @@
                         <p:ajax event="rowUnselect" update="createButton viewButton editButton deleteButton"/>
 
                         <f:facet name="{Exporters}"  >
-
+                            <p:selectOneMenu id="pn1" value="#{sheduleController.pname}"   >
+                                <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                                <f:selectItems value="#{projectsController.itemsAvailableSelectOne}"/>
+                                <p:ajax event="valueChange" update="pn" oncomplete="PF('tt').filter()"/>
+                            </p:selectOneMenu>
 
 
                             <p:inputText title="Поиск" id="globalFilter" onkeyup="PF('tt').filter()" style="width:150px; float: right" /> 
@@ -76,10 +80,13 @@
                             </f:facet>
                             <h:outputText value="#{item.task}"/>
                         </p:column>
-                        <p:column sortBy="#{item.projectid.name}" filterBy="#{item.projectid.name}" style="display:none">
-                            <f:facet name="header">
-                                <h:outputText value="#{bundle.ListSheduleTitle_projectid}"/>
-                            </f:facet>
+                        <p:column sortBy="#{item.projectid.name}" filterBy="#{item.projectid.name}" style = "display: none">
+                            <f:facet name="filter">
+                                <p:selectOneMenu id="pn" value="#{sheduleController.pname}" onchange="PF('tt').filter()" >
+                                    <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                                    <f:selectItems value="#{projectsController.itemsAvailableSelectOne}"/>
+                                </p:selectOneMenu>
+                            </f:facet>  
                             <h:outputText value="#{item.projectid.name}"/>
                         </p:column>
 
