@@ -80,7 +80,7 @@
                             </f:facet>
                             <h:outputText value="#{item.task}"/>
                         </p:column>
-                        <p:column sortBy="#{item.projectid.name}" filterBy="#{item.projectid.name}" style = "display: none">
+                        <p:column filterBy="#{item.projectid.id}" >
                             <f:facet name="filter">
                                 <p:selectOneMenu id="pn" value="#{sheduleController.pname}" onchange="PF('tt').filter()" >
                                     <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>

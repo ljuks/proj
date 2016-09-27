@@ -25,6 +25,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.Persistence;
 import javax.persistence.TypedQuery;
 import jpa.Projects;
+import jpa.pro;
 import org.primefaces.event.SelectEvent;
 
 @Named("projectpersonsController")
@@ -48,6 +49,7 @@ public class ProjectpersonsController implements Serializable {
         Projects item = (Projects) event.getObject();
         this.setProjectsid(item.getId());
         this.setFlag(0);
+      pro.setFilterproject(11);
     }
 
     public int getFlag() {

@@ -34,32 +34,30 @@ public class pro implements Serializable {
     public pro() {
 
     }
+    public static int filterproject;
 
     private int currentuserId;
     private int currentuserRole;
     private String dpass;
     private String currentuserFio;
 
-  ///////////////////////
-    
+    ///////////////////////
+    ////////////////////////////// 
 
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-   ////////////////////////////// 
-    
+    public static int getFilterproject() {
+        return filterproject;
+    }
 
+    public static void setFilterproject(int filterproject) {
+        pro.filterproject = filterproject;
+    }
 
-
-
+  
+    
+    
+    
+    
+    
     public int getCurrentuserId() {
         return currentuserId;
     }
@@ -83,8 +81,6 @@ public class pro implements Serializable {
     public void setDpass(String dpass) {
         this.dpass = dpass;
     }
-
-
 
     public String getCurrentuserFio() {
         return currentuserFio;
