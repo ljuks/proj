@@ -34,6 +34,7 @@ public class SheduleController implements Serializable {
     private List<Shedule> items = null;
     private Shedule selected;
     private Date da;
+    private String pname;
 
     public SheduleController() {
     }
@@ -51,6 +52,17 @@ da = null;
         this.da = da;
     }
 
+    public String getPname() {
+        return pname;
+    }
+
+    public void setPname(String pname) {
+        this.pname = pname;
+    }
+
+    
+    
+    
     public Shedule getSelected() {
         return selected;
     }
