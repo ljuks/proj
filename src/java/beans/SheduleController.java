@@ -8,6 +8,7 @@ import controllers.SheduleFacade;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -20,6 +21,7 @@ import javax.faces.convert.Converter;
 import javax.faces.convert.FacesConverter;
 import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
+import jpa.pro;
 
 @Named("sheduleController")
 @ViewScoped
@@ -38,6 +40,20 @@ public class SheduleController implements Serializable {
 
     public SheduleController() {
     }
+    
+     public boolean filterByProject (Object value, Object filter, Locale locale) {
+        // it fails before calling this method
+     if (value==null)
+         return false;
+        
+        if (Integer.parseInt(value.toString()) == pro.getFilterproject())
+                return true;
+        
+        return false;
+     
+    } 
+    
+    
     
     public void clearda(){
 //        this.setDa(null);
