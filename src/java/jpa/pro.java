@@ -34,8 +34,9 @@ public class pro implements Serializable {
     public pro() {
 
     }
-    public static int filterproject;
+    public static int filterproject=1;
 
+    private int fid;
     private int currentuserId;
     private int currentuserRole;
     private String dpass;
@@ -50,6 +51,15 @@ public class pro implements Serializable {
 
     public static void setFilterproject(int filterproject) {
         pro.filterproject = filterproject;
+    }
+
+    public int getFid() {
+        this.fid=filterproject;
+        return fid;
+    }
+
+    public void setFid(int fid) {
+        this.fid = filterproject;
     }
 
   
