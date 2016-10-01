@@ -136,7 +136,7 @@ public class Company implements Serializable {
 
     @Override
     public String toString() {
-        return "jpa.Company[ id=" + id + " ]";
+        return name;
     }
     
 }

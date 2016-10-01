@@ -107,7 +107,7 @@ public class Holdings implements Serializable {
 
     @Override
     public String toString() {
-        return "jpa.Holdings[ id=" + id + " ]";
+        return name;
     }
     
 }

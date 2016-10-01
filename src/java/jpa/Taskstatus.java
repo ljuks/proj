@@ -128,7 +128,7 @@ public class Taskstatus implements Serializable {
 
     @Override
     public String toString() {
-        return "jpa.Taskstatus[ id=" + id + " ]";
+        return name;
     }
 
 }

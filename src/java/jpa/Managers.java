@@ -120,7 +120,7 @@ public class Managers implements Serializable {
 
     @Override
     public String toString() {
-        return "jpa.Managers[ id=" + id + " ]";
+        return name;
     }
     
 }

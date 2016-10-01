@@ -31,7 +31,7 @@
                                              scrollWidth="100%"
                                              style="width:100%; margin-bottom:20px"
                                              >
-                                    <p:ajax event="rowSelect"  listener="#{projectpersonsController.projselect}" update=":ProjectsListForm:datalist1 createButton viewButton editButton deleteButton"/>
+                                    <p:ajax event="rowSelect"  listener="#{projectpersonsController.projselect}" oncomplete="PF('tt2').filter()" update=":ProjectsListForm:datalist1 createButton viewButton editButton deleteButton"/>
                                     <p:ajax event="rowUnselect" update="createButton viewButton editButton deleteButton"/>
 
 
@@ -177,13 +177,13 @@
                                              rowKey="#{item.id}"
                                              rows="20"
                                              rowsPerPageTemplate="10,20,30,40,50"
-                                             widgetVar="tt"
+                                             widgetVar="tt2"
                                              >
 
                                     <p:ajax event="rowSelect"   />
                                     <p:ajax event="rowUnselect" />
 
-  
+
 
                                     <p:column sortBy="#{item.tdate}" filterBy="#{item.tdate}" headerText="Дата" visible="true">
                                         <f:facet name="filter">
@@ -192,7 +192,7 @@
                                                         pattern="dd/MM/yyyy" size="10" 
                                                         value="#{sheduleController.da}"
                                                         showOn="button" showButtonPanel="true" locale="ru" >
-                                                <p:ajax event="dateSelect"  oncomplete="PF('tt').filter()"/>
+                                                <p:ajax event="dateSelect"  oncomplete="PF('tt2').filter()"/>
 
                                             </p:calendar>
                                         </f:facet>
@@ -208,14 +208,9 @@
                                         </f:facet>
                                         <h:outputText value="#{item.task}"/>
                                     </p:column>
-                                    <p:column filterBy="#{item.projectid.id}" >
-                                        <f:facet name="filter">
-                                            <p:selectOneMenu id="pn" value="#{sheduleController.pname}" onchange="PF('tt').filter()" >
-                                                <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
-                                                <f:selectItems value="#{projectsController.itemsAvailableSelectOne}"/>
-                                            </p:selectOneMenu>
-                                        </f:facet>  
-                                        <h:outputText value="#{item.projectid.name}"/>
+                                    <p:column filterBy="#{item.projectid.id}" filterFunction="#{sheduleController.filterByProject}">
+
+                                        <h:outputText value="#{item.projectid.id}"/>
                                     </p:column>
 
 
@@ -224,7 +219,7 @@
 
                                     <p:column sortBy="#{item.userid.fio}" filterBy="#{item.userid.fio}" headerText="Исполнитель">
                                         <f:facet name="filter">
-                                            <p:selectOneMenu onchange="PF('tt').filter()" >
+                                            <p:selectOneMenu onchange="PF('tt2').filter()" >
                                                 <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
                                                 <f:selectItems value="#{usersController.itemsAvailableSelectOne}"/>
                                             </p:selectOneMenu> 
@@ -234,17 +229,27 @@
 
                                     <p:column sortBy="#{item.controlid.fio}" filterBy="#{item.controlid.fio}" headerText="Контроль">
                                         <f:facet name="filter">
-                                            <p:selectOneMenu onchange="PF('tt').filter()" >
+                                            <p:selectOneMenu onchange="PF('tt2').filter()" >
                                                 <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
                                                 <f:selectItems value="#{usersController.itemsAvailableSelectOne}"/>
                                             </p:selectOneMenu> 
                                         </f:facet>
                                         <h:outputText value="#{item.controlid.fio}"/>
                                     </p:column>
+                                    <f:facet name="footer">
+                                        <p:commandButton id="createButton2" icon="ui-icon-plus"   value="#{bundle.Create}" actionListener="#{sheduleController.prepareCreate}" update=":SheduleCreateForm" oncomplete="PF('SheduleCreateDialog').show()"/>
+                                        <p:commandButton id="viewButton2"   icon="ui-icon-search" value="#{bundle.View}" update=":SheduleViewForm" oncomplete="PF('SheduleViewDialog').show()" disabled="#{empty sheduleController.selected}"/>
+                                        <p:commandButton id="editButton2"   icon="ui-icon-pencil" value="#{bundle.Edit}" update=":SheduleEditForm" oncomplete="PF('SheduleEditDialog').show()" disabled="#{empty sheduleController.selected}"/>
+                                        <p:commandButton id="deleteButton2" icon="ui-icon-trash"  value="#{bundle.Delete}" actionListener="#{sheduleController.destroy}" update=":growl,datalist2" disabled="#{empty sheduleController.selected}"/>
+
+                                        <h:outputText value="Фильтр по дате"   style="width:100px; float: right; margin-top: 15px; font-weight: normal; text-transform: none"></h:outputText>
 
 
 
- 
+                                    </f:facet>
+
+
+
                                 </p:dataTable>
 
                             </p:column>
@@ -259,6 +264,9 @@
             <ui:include src="View.xhtml"/>
             <ui:include src="/#{pro.dpass}/projectpersons/Create_1.xhtml"/>
             <ui:include src="/#{pro.dpass}/projectpersons/Edit_1.xhtml"/>
+            <ui:include src="Createtask.xhtml"/>
+            <ui:include src="Edittask.xhtml"/>
+            <ui:include src="Viewtask.xhtml"/>
 
         </ui:define>
     </ui:composition>

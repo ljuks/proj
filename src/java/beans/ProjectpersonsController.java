@@ -49,7 +49,7 @@ public class ProjectpersonsController implements Serializable {
         Projects item = (Projects) event.getObject();
         this.setProjectsid(item.getId());
         this.setFlag(0);
-      pro.setFilterproject(11);
+      pro.setFilterproject(item.getId());
     }
 
     public int getFlag() {

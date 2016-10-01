@@ -112,7 +112,7 @@ public class Tasktype1 implements Serializable {
 
     @Override
     public String toString() {
-        return "jpa.Tasktype1[ id=" + id + " ]";
+        return name;
     }
 
 }

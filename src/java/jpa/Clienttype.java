@@ -99,7 +99,7 @@ public class Clienttype implements Serializable {
 
     @Override
     public String toString() {
-        return "jpa.Clienttype[ id=" + id + " ]";
+        return name;
     }
 
 }
