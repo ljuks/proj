@@ -183,7 +183,7 @@
                                     <p:ajax event="rowSelect"   />
                                     <p:ajax event="rowUnselect" />
 
-  
+
 
                                     <p:column sortBy="#{item.tdate}" filterBy="#{item.tdate}" headerText="Дата" visible="true">
                                         <f:facet name="filter">
@@ -209,7 +209,7 @@
                                         <h:outputText value="#{item.task}"/>
                                     </p:column>
                                     <p:column filterBy="#{item.projectid.id}" filterFunction="#{sheduleController.filterByProject}">
-                                       
+
                                         <h:outputText value="#{item.projectid.id}"/>
                                     </p:column>
 
@@ -236,10 +236,20 @@
                                         </f:facet>
                                         <h:outputText value="#{item.controlid.fio}"/>
                                     </p:column>
+                                    <f:facet name="footer">
+                                        <p:commandButton id="createButton2" icon="ui-icon-plus"   value="#{bundle.Create}" actionListener="#{sheduleController.prepareCreate}" update=":SheduleCreateForm" oncomplete="PF('SheduleCreateDialog').show()"/>
+                                        <p:commandButton id="viewButton2"   icon="ui-icon-search" value="#{bundle.View}" update=":SheduleViewForm" oncomplete="PF('SheduleViewDialog').show()" disabled="#{empty sheduleController.selected}"/>
+                                        <p:commandButton id="editButton2"   icon="ui-icon-pencil" value="#{bundle.Edit}" update=":SheduleEditForm" oncomplete="PF('SheduleEditDialog').show()" disabled="#{empty sheduleController.selected}"/>
+                                        <p:commandButton id="deleteButton2" icon="ui-icon-trash"  value="#{bundle.Delete}" actionListener="#{sheduleController.destroy}" update=":growl,datalist2" disabled="#{empty sheduleController.selected}"/>
+
+                                        <h:outputText value="Фильтр по дате"   style="width:100px; float: right; margin-top: 15px; font-weight: normal; text-transform: none"></h:outputText>
 
 
 
- 
+                                    </f:facet>
+
+
+
                                 </p:dataTable>
 
                             </p:column>
@@ -254,6 +264,9 @@
             <ui:include src="View.xhtml"/>
             <ui:include src="/#{pro.dpass}/projectpersons/Create_1.xhtml"/>
             <ui:include src="/#{pro.dpass}/projectpersons/Edit_1.xhtml"/>
+            <ui:include src="Createtask.xhtml"/>
+            <ui:include src="Edittask.xhtml"/>
+            <ui:include src="Viewtask.xhtml"/>
 
         </ui:define>
     </ui:composition>
