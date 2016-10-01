@@ -134,7 +134,7 @@ public class Cats implements Serializable {
 
     @Override
     public String toString() {
-        return "jpa.Cats[ id=" + id + " ]";
+        return name;
     }
     
 }
