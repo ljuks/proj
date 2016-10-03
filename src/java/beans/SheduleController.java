@@ -46,13 +46,22 @@ public class SheduleController implements Serializable {
      if (value==null)
          return false;
         
-        if (Integer.parseInt(value.toString()) == pro.getFilterproject())
+        if (Integer.parseInt(value.toString()) == pro.getFilterproject() )
                 return true;
         
         return false;
      
     } 
     
+     
+     public void massadd(){
+         this.prepareCreate();
+         selected.getProjectid().setId(pro.getFilterproject());
+         this.create();
+         
+         
+     }
+     
     
     
     public void clearda(){

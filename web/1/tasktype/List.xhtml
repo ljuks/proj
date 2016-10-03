@@ -60,12 +60,12 @@
                             <p:commandButton id="viewButton"   icon="ui-icon-search" value="#{bundle.View}" update=":TasktypeViewForm" oncomplete="PF('TasktypeViewDialog').show()" disabled="#{empty tasktypeController.selected}"/>
                             <p:commandButton id="editButton"   icon="ui-icon-pencil" value="#{bundle.Edit}" update=":TasktypeEditForm" oncomplete="PF('TasktypeEditDialog').show()" disabled="#{empty tasktypeController.selected}"/>
                             <p:commandButton id="deleteButton" icon="ui-icon-trash"  value="#{bundle.Delete}" actionListener="#{tasktypeController.destroy}" update=":growl,datalist" disabled="#{empty tasktypeController.selected}">
-                                <p:confirm header="" message="Удалить?" icon="ui-icon-alert"/>
+                                <!--<p:confirm header="" message="Удалить?" icon="ui-icon-alert"/>-->
                             </p:commandButton>
                         </f:facet>
                     </p:dataTable>
                 </p:panel>
-                <ui:include src="/confirmation.xhtml"/>
+                <!--<ui:include src="/confirmation.xhtml"/>-->
             </h:form>
 
             <ui:include src="Create.xhtml"/>

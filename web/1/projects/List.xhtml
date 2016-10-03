@@ -175,7 +175,7 @@
                                              paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} "
                                              paginatorPosition="bottom"
                                              rowKey="#{item.id}"
-                                             rows="20"
+                                             rows="10"
                                              rowsPerPageTemplate="10,20,30,40,50"
                                              widgetVar="tt2"
                                              >
@@ -237,6 +237,7 @@
                                         <h:outputText value="#{item.controlid.fio}"/>
                                     </p:column>
                                     <f:facet name="footer">
+                                       <p:commandButton id="createButton3" icon="ui-icon-plus"   value="#{bundle.Create}"  update=":SheduleCreateForm" oncomplete="PF('TasktypeViewDialog').show()"/>
                                         <p:commandButton id="createButton2" icon="ui-icon-plus"   value="#{bundle.Create}" actionListener="#{sheduleController.prepareCreate}" update=":SheduleCreateForm" oncomplete="PF('SheduleCreateDialog').show()"/>
                                         <p:commandButton id="viewButton2"   icon="ui-icon-search" value="#{bundle.View}" update=":SheduleViewForm" oncomplete="PF('SheduleViewDialog').show()" disabled="#{empty sheduleController.selected}"/>
                                         <p:commandButton id="editButton2"   icon="ui-icon-pencil" value="#{bundle.Edit}" update=":SheduleEditForm" oncomplete="PF('SheduleEditDialog').show()" disabled="#{empty sheduleController.selected}"/>
@@ -267,7 +268,7 @@
             <ui:include src="Createtask.xhtml"/>
             <ui:include src="Edittask.xhtml"/>
             <ui:include src="Viewtask.xhtml"/>
-
+            <ui:include src="Listtasks.xhtml"/>
         </ui:define>
     </ui:composition>
 
