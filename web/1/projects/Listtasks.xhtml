@@ -11,11 +11,11 @@
         <p:dialog id="TasktypeViewDlg" widgetVar="TasktypeViewDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.ViewTasktypeTitle}">
             <h:form id="TasktypeViewForm">
                 <h:panelGroup id="display">
-                    <p:dataTable  id="datalist" value="#{tasktypeController.items}" var="item"
+                    <p:dataTable  id="datalist4" value="#{tasktypeController.items}" var="item"
                                   selection="#{tasktypeController.selected}"
                                   paginator="true"
                                   rowKey="#{item.id}"
-                                  rows="20"
+                                  rows="10"
                                   rowsPerPageTemplate="10,20,30,40,50">
                         <p:column selectionMode="multiple" style="width:16px;text-align:center"/>
                         <p:column sortBy="#{item.name}" filterBy="#{item.name}">
@@ -27,6 +27,8 @@
 
                     </p:dataTable>
 
+
+                    <p:commandButton value="OK" actionListener="#{sheduleController.massadd()}" onclick="TasktypeViewDialog.hide()"/>
                     <p:commandButton value="#{bundle.Close}" onclick="TasktypeViewDialog.hide()"/>
                 </h:panelGroup>
             </h:form>

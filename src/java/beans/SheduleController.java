@@ -40,33 +40,34 @@ public class SheduleController implements Serializable {
 
     public SheduleController() {
     }
-    
-     public boolean filterByProject (Object value, Object filter, Locale locale) {
+
+    public boolean filterByProject(Object value, Object filter, Locale locale) {
         // it fails before calling this method
-     if (value==null)
-         return false;
-        
-        if (Integer.parseInt(value.toString()) == pro.getFilterproject() )
-                return true;
-        
+        if (value == null) {
+            return false;
+        }
+
+        if (Integer.parseInt(value.toString()) == pro.getFilterproject()) {
+            return true;
+        }
+
         return false;
-     
-    } 
-    
-     
-     public void massadd(){
-         this.prepareCreate();
-         selected.getProjectid().setId(pro.getFilterproject());
-         this.create();
-         
-         
-     }
-     
-    
-    
-    public void clearda(){
+
+    }
+
+    public void massadd() {
+
+        if (selected != null) {
+            this.prepareCreate();
+            selected.getProjectid().setId(pro.getFilterproject());
+            this.create();
+        }
+
+    }
+
+    public void clearda() {
 //        this.setDa(null);
-da = null;
+        da = null;
     }
 
     public Date getDa() {
@@ -85,9 +86,6 @@ da = null;
         this.pname = pname;
     }
 
-    
-    
-    
     public Shedule getSelected() {
         return selected;
     }
