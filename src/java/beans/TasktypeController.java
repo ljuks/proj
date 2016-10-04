@@ -28,6 +28,8 @@ public class TasktypeController implements Serializable {
 
     @Inject
     private jpa.pro p;
+      @Inject
+    private SheduleController sc;
     
 
     @EJB
@@ -38,7 +40,7 @@ public class TasktypeController implements Serializable {
 
     public void massadd() {
         Projects pc = new Projects();
-        SheduleController sc = new SheduleController();
+//        SheduleController sc = new SheduleController();
         sc.prepareCreate();
         pc.setId(1);
         if (sc.getSelected()!= null) {
