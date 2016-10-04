@@ -66,7 +66,7 @@ public class Shedule implements Serializable {
 
     @Column(name = "pid")
     private Integer pid;
-
+    
     @Lob
     @Size(max = 65535)
     @Column(name = "description")
@@ -121,6 +121,8 @@ public class Shedule implements Serializable {
 
     public Shedule() {
     }
+
+
 
     public Contactperson getCpid() {
         return cpid;

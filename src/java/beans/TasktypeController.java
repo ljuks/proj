@@ -31,11 +31,24 @@ public class TasktypeController implements Serializable {
     @EJB
     private controllers.TasktypeFacade ejbFacade;
     private List<Tasktype> items = null;
+    private List<Tasktype> mselected = null;
     private Tasktype selected;
 
     public TasktypeController() {
     }
 
+    public List<Tasktype> getMselected() {
+        return mselected;
+    }
+
+    public void setMselected(List<Tasktype> mselected) {
+        this.mselected = mselected;
+    }
+
+    
+    
+    
+    
     public Tasktype getSelected() {
         return selected;
     }

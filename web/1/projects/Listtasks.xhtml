@@ -12,7 +12,7 @@
             <h:form id="TasktypeViewForm">
                 <h:panelGroup id="display">
                     <p:dataTable  id="datalist4" value="#{tasktypeController.items}" var="item"
-                                  selection="#{tasktypeController.selected}"
+                                  selection="#{tasktypeController.mselected}"
                                   paginator="true"
                                   rowKey="#{item.id}"
                                   rows="10"

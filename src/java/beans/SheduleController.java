@@ -21,6 +21,7 @@ import javax.faces.convert.Converter;
 import javax.faces.convert.FacesConverter;
 import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
+import jpa.Projects;
 import jpa.pro;
 
 @Named("sheduleController")
@@ -29,6 +30,7 @@ public class SheduleController implements Serializable {
 
     @Inject
     private jpa.pro p;
+    
 //    @Inject
     //  private ProjectsController projectidController;
     @EJB
@@ -37,6 +39,7 @@ public class SheduleController implements Serializable {
     private Shedule selected;
     private Date da;
     private String pname;
+    private Projects pc=new Projects();
 
     public SheduleController() {
     }
@@ -56,10 +59,12 @@ public class SheduleController implements Serializable {
     }
 
     public void massadd() {
-
+        
+        this.prepareCreate();
+        pc.setId(1);
         if (selected != null) {
-            this.prepareCreate();
-            selected.getProjectid().setId(pro.getFilterproject());
+
+            selected.setProjectid(pc);
             this.create();
         }
 
