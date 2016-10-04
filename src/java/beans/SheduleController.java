@@ -58,17 +58,7 @@ public class SheduleController implements Serializable {
 
     }
 
-    public void massadd() {
-        
-        this.prepareCreate();
-        pc.setId(1);
-        if (selected != null) {
 
-            selected.setProjectid(pc);
-            this.create();
-        }
-
-    }
 
     public void clearda() {
 //        this.setDa(null);
@@ -118,7 +108,7 @@ public class SheduleController implements Serializable {
 
     public void create() {
         selected.setTs(new Date());
-        selected.setPid(p.getCurrentuserId());
+ //       selected.setPid(p.getCurrentuserId());
         persist(PersistAction.CREATE, ResourceBundle.getBundle("/Bundle").getString("SheduleCreated"));
         if (!JsfUtil.isValidationFailed()) {
             items = null;    // Invalidate list of items to trigger re-query.

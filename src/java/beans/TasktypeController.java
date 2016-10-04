@@ -20,6 +20,7 @@ import javax.faces.convert.Converter;
 import javax.faces.convert.FacesConverter;
 import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
+import jpa.Projects;
 
 @Named("tasktypeController")
 @ViewScoped
@@ -27,12 +28,26 @@ public class TasktypeController implements Serializable {
 
     @Inject
     private jpa.pro p;
+    
 
     @EJB
     private controllers.TasktypeFacade ejbFacade;
     private List<Tasktype> items = null;
     private List<Tasktype> mselected = null;
     private Tasktype selected;
+
+    public void massadd() {
+        Projects pc = new Projects();
+        SheduleController sc = new SheduleController();
+        sc.prepareCreate();
+        pc.setId(1);
+        if (sc.getSelected()!= null) {
+
+            sc.getSelected().setProjectid(pc);
+            sc.create();
+        }
+
+    }
 
     public TasktypeController() {
     }
@@ -45,10 +60,6 @@ public class TasktypeController implements Serializable {
         this.mselected = mselected;
     }
 
-    
-    
-    
-    
     public Tasktype getSelected() {
         return selected;
     }
