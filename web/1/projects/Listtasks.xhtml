@@ -28,7 +28,7 @@
                     </p:dataTable>
 
 
-                    <p:commandButton value="OK" actionListener="#{tasktypeController.massadd()}" onclick="TasktypeViewDialog.hide()"/>
+                    <p:commandButton value="OK" actionListener="#{tasktypeController.massadd()}" update="display,:growl" onclick="TasktypeViewDialog.hide()" />
                     <p:commandButton value="#{bundle.Close}" onclick="TasktypeViewDialog.hide()"/>
                 </h:panelGroup>
             </h:form>

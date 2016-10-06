@@ -39,6 +39,8 @@ public class TasktypeController implements Serializable {
     private Tasktype selected;
 
     public void massadd() {
+        Date today = new Date();
+        Date tomorrow = new Date(today.getTime() + (1000 * 60 * 60 * 24));
         if (mselected != null) {
             Projects pc = new Projects();
             pc.setId(pro.getFilterproject());
@@ -50,6 +52,8 @@ public class TasktypeController implements Serializable {
 
                     sc.getSelected().setProjectid(pc);
                     sc.getSelected().setTask(mselected.get(i).getName());
+                    sc.getSelected().setTdate(tomorrow);
+                    sc.getSelected().setTask1id(mselected.get(i).getTasktype1id());
                     sc.create();
                 }
             }
