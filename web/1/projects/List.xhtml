@@ -62,11 +62,11 @@
                                         <h:outputText value="#{item.id}"/>
                                     </p:column>
 
-                                    <p:column sortBy="#{item.catid.name}" filterBy="#{item.catid.name}" headerText="Категория" style="width:5%">
+                                    <p:column sortBy="#{item.catid.name}" filterBy="#{item.catid.name}" headerText="Кат" style="width:5%">
                                         <f:facet name="filter">
-                                            <p:selectOneMenu onchange="PF('pp').filter()" >
+                                            <p:selectOneMenu onchange="PF('pp').filter()" style="width:5%" >
                                                 <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
-                                                <f:selectItems value="#{projectstatusController.itemsAvailableSelectOne}"/>
+                                                <f:selectItems value="#{catsController.itemsAvailableSelectOne}"/>
                                             </p:selectOneMenu> 
                                         </f:facet>
                                         <h:outputText value="#{item.catid.name}"/>
